@@ -69,5 +69,8 @@
             </div>
         </div>
     </div>
+    <p>hi lara</p>
+    <p>hi lara</p>
+
 </div>
 @endsection
