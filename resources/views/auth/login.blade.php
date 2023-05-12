@@ -122,10 +122,9 @@ p {
 }
 
 .sign-up-container2 {
-	left: 0;
-	width: 50%;
-	opacity: 0;
-	z-index: 1;
+	left: 50%;
+   opacity: 0;
+   z-index: 1;
 }
 
 .container2.right-panel-active .sign-up-container2 {
@@ -202,7 +201,7 @@ p {
 }
 
 .container2.right-panel-active .overlay-left {
-	transform: translateX(0);
+	transform: translateX(20%);
 }
 
 .overlay-right {
@@ -211,7 +210,7 @@ p {
 }
 
 .container2.right-panel-active .overlay-right {
-	transform: translateX(20%);
+	transform: translateX(-100%);
 }
 
 .social-container2 {

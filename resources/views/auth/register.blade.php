@@ -1,4 +1,4 @@
-@@ -0,0 +1,77 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -75,7 +75,4 @@
         </div>
     </div>
 </div>
-
-<!--hello jad -->
-<!--hello Lara trkeene b7ale-->
 @endsection
