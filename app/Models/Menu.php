@@ -9,7 +9,7 @@ class Menu extends Model
 {
     public function store()
     {
-        return $this->belongsTo(Store::class);
+    return $this->hasOne(Store::class);
     }
     
     public function items()

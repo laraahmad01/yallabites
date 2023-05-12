@@ -22,10 +22,11 @@ class Store extends Model
         return $this->belongsTo(Cuisine::class);
     }
     
-    public function menus()
-    {
-        return $this->hasMany(Menu::class);
-    }
+    public function menu()
+{
+    return $this->hasOne(Menu::class);
+}
+
     
     public function orders()
     {
