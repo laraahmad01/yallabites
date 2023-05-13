@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\RestaurantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/userhome', function () {
     return view('userhome');
 });
+
+Route::get('/restaurant/create', [RestaurantController::class,'create'])->name('restaurant.create');
