@@ -1,3 +1,6 @@
+@php
+    $store_id = 123; // Replace with the actual store ID
+@endphp
 
 
 <!DOCTYPE html>
@@ -8,64 +11,59 @@
     <title>My Review Form</title>
     <style>
       /* Modern CSS styles for the form */
-      body {
-        background-color: #f1f1f1;
-        font-family: Arial, sans-serif;
-      }
       form {
-        max-width: 100%;
-        margin: 0 auto;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        padding: 20px;
-      }
-      h1 {
-        font-size: 24px;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-      input[type="text"],
-      select,
-      textarea {
-        width: 98%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 16px;
-        margin-bottom: 20px;
-      }
-      select {
-        height: 40px;
-      }
-      textarea {
-        height: 150px;
-      }
-      button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      button:hover {
-        background-color: #3e8e41;
-      }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input,
+select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
     </style>
   </head>
   <body>
   
   <form method="post" action="{{ route('review', ['store_id' => $store_id]) }}">
         @csrf
-      <h1>Review for </h1>
+      <h1>Review </h1>
       <label for="description">description</label>
       <input type="description" id="description" name="description" required>
 
