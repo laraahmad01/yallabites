@@ -19,8 +19,9 @@ return new class extends Migration
             $table->text('description');
             $table->unsignedBigInteger('cuisine_id');
             $table->boolean('is_accepted')->default(false);
+            $table->string('image');
             $table->timestamps();
-        
+          
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('location_id')->references('id')->on('locations');
             $table->foreign('cuisine_id')->references('id')->on('cuisines');
