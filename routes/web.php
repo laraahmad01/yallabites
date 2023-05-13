@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\RestaurantController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +28,11 @@ Route::get('/userhome', function () {
 });
 
 Route::get('/restaurant/create', [RestaurantController::class,'create'])->name('restaurant.create');
+
+
+//Route::post("store/{id}", [reviewcontroller::class,'store'])->name('store');
+//Route::get("create/{id}", [reviewcontroller::class,'create'])->name('create');
+Route::get('/', function () {
+    return view('reviews');
+});
+Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
