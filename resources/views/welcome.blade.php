@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-    <link rel="stylesheet" href="{{ asset('css/storeslist.css') }}">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/itemsdetails.css') }}">
 
     </head>
-    <body class="antialiased">
-    <h1 class="title">Feature Products Cards</h1>
+    <body >
 
-<div id="app" class="container">
-  <card data-image="https://images.pexels.com/photos/2529157/pexels-photo-2529157.jpeg?cs=srgb&dl=pexels-melvin-buezo-2529157.jpg&fm=jpg">
-    <h1 slot="header">Men</h1>
-    <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-  </card>  
-  <card data-image="https://roadsterdiner.com/storage/2018/03/MIGHTY-CHICKEN.jpg">
-    <h1 slot="header">Woman</h1>
-    <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-  </card>
+    <main>
+  <div class="container">
 
-</div>
+          <div class="product-image">
+            <img class="active" src="https://source.unsplash.com/W1yjvf5idqA">
+          </div>
+        
+      <div class="column-xs-12 column-md-5 class2">
+        <h1>Bonsai</h1>
+        <h2>$19.99</h2>
+        <div class="description">
+          <p>The purposes of bonsai are primarily contemplation for the viewer, and the pleasant exercise of effort and ingenuity for the grower.</p>
+          <p>By contrast with other plant cultivation practices, bonsai is not intended for production of food or for medicine. Instead, bonsai practice focuses on long-term cultivation and shaping of one or more small trees growing in a container.</p>
+        </div>
+        <button class="add-to-cart">Add To Cart</button>
+      </div>
+    </div>
+
+</main>
+
+
     </body>
         <script src="{{ asset('js/storeslist.js') }}"></script>
 </html>

@@ -1,0 +1,226 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-family: 'Merriweather', serif;
+  color: #222;
+  background-color: #ededed;
+}
+
+.table {
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.topInfo {
+  width: 250px;
+  float: right;
+  padding: 30px 60px 0 0;
+  position: relative;
+}
+
+.topInfo a {
+  display: block;
+  text-decoration: none;
+  -webkit-appearance: none;
+  width: 120px;
+  line-height: 30px;
+  height: 30px;
+  border: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-top: 30px;
+  border-radius: 3px;
+  background-color: #28C891;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.topInfo a:hover {
+  background-color: lighten(#28C891, 2%);
+}
+
+.swatches {
+  margin-top: 50px;
+  margin-left: -4px;
+}
+
+.swatch {
+  width: 30px;
+  padding: 2px;
+  border: 1px solid transparent;
+  height: 30px;
+  border-radius: 100%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.swatch.active {
+  border-color: rgba(black, 0.3);
+}
+
+.swatch img {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  border-radius: 100%;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 0;
+  display: block;
+  position: relative;
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(#222, 0.4);
+  margin-bottom: 4px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Merriweather', serif;
+  font-size: 11px;
+  line-height: 1.3em;
+  margin: 10px 0;
+}
+
+.fadey {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
+  top: -40px;
+  margin: 0 auto;
+  border-radius: 0 0 3px 3px;
+  background-color: blue;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 1) 100%);
+}
+
+.card {
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+  padding-top: 15px;
+  padding-bottom: 40px;
+  overflow-y:
+  auto;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  margin-top: 30px;
+}
+
+.card .swiper-container {
+  width: 200px;
+  height: 220px;
+  margin: 0;
+}
+
+.card .swiper-container:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 170px;
+  width: 30px;
+  height: 200px;
+  z-index: 10;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 60%, rgba(255, 255, 255, 1) 100%);
+}
+
+.card .swiper-container img {
+  width: 200px;
+}
+
+.card .swiper-pagination {
+  cursor: pointer;
+}
+
+.card .swiper-pagination-bullet {
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid black;
+  margin: 0 8px;
+}
+
+.card .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: black;
+  opacity: 0.2;
+}
+
+.padme {
+  padding: 0px 40px 0px 40px;
+  opacity: 0.9;
+}
+
+.padme .column {
+  width: 50%;
+  float: left;
+  opacity: 0.85;
+}
+
+.padme .column.col2 {
+  width: 200px;
+  float: right;
+}
+
+.padme .column.col2 table {
+  font-size: 11px;
+  line-height: 1.3em;
+  margin: 10px 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.padme .column.col2 table tr td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 8px 0;
+}
+
+.padme .column.col2 table tr:first-child td {
+  padding-top: 0;
+}
+
+.padme .column.col2 table tr:last-child td {
+  padding-bottom: 0;
+  border: none;
+}
+
+.padme .column.col2 table .bold {
+  font-weight: 900;
+}

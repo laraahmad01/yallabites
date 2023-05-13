@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Models\Menu;
+use App\Models\Item;
 
 class StoresController extends Controller
 {
@@ -34,5 +35,14 @@ public function menu($storeId, $menuId)
         return view('stores.show_menu', compact('store', 'menus'));
     }
     
+    public function showItemDetails($storeId, $menuId, $itemId)
+{
+    $store = Store::findOrFail($storeId);
+    $menu = Menu::findOrFail($menuId);
+    $item = Item::findOrFail($itemId);
 
+    return view('stores.item_details', compact('store', 'menu', 'item'));
+}
+
+    
 }

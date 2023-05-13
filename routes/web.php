@@ -85,3 +85,5 @@ Route::get('/stores', [StoresController::class, 'index'])->name('stores.index');
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
 
+Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
+
