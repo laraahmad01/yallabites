@@ -9,20 +9,22 @@ use App\Models\Menu;
 class StoresController extends Controller
 {
     public function index()
-    {
-        $stores = Store::all();
-        return view('stores.index', compact('stores'));
-    }
+{
+    $stores = Store::all();
+    return view('stores.index', compact('stores'));
+}
 
 
-    public function menu($storeId, $menuId)
-    {
-        $store = Store::findOrFail($storeId);
-        $menu = Menu::with('items')->findOrFail($menuId);
-        $items = $menu->items;
-    
-        return view('stores.menu', compact('store', 'menu', 'items'));
-    }
+
+public function menu($storeId, $menuId)
+{
+    $store = Store::findOrFail($storeId);
+    $menu = Menu::with('items')->findOrFail($menuId);
+    $items = $menu->items;
+
+    return view('stores.menu', compact('store', 'menu', 'items'));
+}
+
     
     public function showMenu($storeId)
     {
