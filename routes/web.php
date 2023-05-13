@@ -74,7 +74,7 @@ Route::get('/restaurant/create', [RestaurantController::class,'create'])->name('
 
 //Route::post("store/{id}", [reviewcontroller::class,'store'])->name('store');
 //Route::get("create/{id}", [reviewcontroller::class,'create'])->name('create');
-Route::get('/', function () {
+Route::get('/review', function () {
     return view('reviews');
 });
 Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
