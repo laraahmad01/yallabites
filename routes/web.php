@@ -82,6 +82,7 @@ Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('rev
 
 
 Route::get('/stores', [StoresController::class, 'index'])->name('stores.index');
+Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.create');
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
 

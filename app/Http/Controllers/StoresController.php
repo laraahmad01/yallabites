@@ -15,7 +15,29 @@ class StoresController extends Controller
     return view('stores.index', compact('stores'));
 }
 
+public function create(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
 
+        $image = $request->file('image');
+        $filename = $image->getClientOriginalName();
+        $path = $request->file('image')->storeAs('images', $filename, 'public');
+
+        $store = new Store;
+        $store->name = $request->input('name');
+        $store->description = $request->input('description');
+        $store->image_path = $path;
+    $store->save();
+
+    // redirect to the newly created store's page
+    return redirect()->route('stores.show', $store->id);
+}
+    
 
 public function menu($storeId, $menuId)
 {
