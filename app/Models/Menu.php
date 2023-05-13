@@ -9,7 +9,7 @@ class Menu extends Model
 {
     public function store()
     {
-    return $this->hasOne(Store::class);
+        return $this->belongsTo(Store::class);
     }
     
     public function items()
@@ -23,4 +23,3 @@ class Menu extends Model
     ];
 use HasFactory;    
 }
-
