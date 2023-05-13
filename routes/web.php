@@ -7,6 +7,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ReviewsController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +68,9 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 Route::get('/access-denied', function () {
     return view('access_denied');
 })->name('access.denied');
+
+Route::get('/restaurant/create', [RestaurantController::class,'create'])->name('restaurant.create');
+
 
 //Route::post("store/{id}", [reviewcontroller::class,'store'])->name('store');
 //Route::get("create/{id}", [reviewcontroller::class,'create'])->name('create');
