@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RolesController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ReviewsController;
-
+use App\Http\Controllers\RestaurantController;
 
 
 /*
