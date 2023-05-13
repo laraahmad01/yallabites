@@ -6,6 +6,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\StoresController;
 
 
 /*
@@ -78,3 +79,7 @@ Route::get('/review', function () {
     return view('reviews');
 });
 Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
+
+Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
+Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
+
