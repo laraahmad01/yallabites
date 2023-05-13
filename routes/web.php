@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RolesController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\ReviewsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +67,10 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 Route::get('/access-denied', function () {
     return view('access_denied');
 })->name('access.denied');
+
+//Route::post("store/{id}", [reviewcontroller::class,'store'])->name('store');
+//Route::get("create/{id}", [reviewcontroller::class,'create'])->name('create');
+Route::get('/', function () {
+    return view('reviews');
+});
+Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
