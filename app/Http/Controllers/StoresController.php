@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Store;
-use App\Models\Menu;
 use App\Models\Item;
+use App\Models\Menu;
+use App\Models\Store;
+use App\Models\Location;
+use App\Models\Cuisine;
+
+
+use Illuminate\Http\Request;
 
 class StoresController extends Controller
 {
@@ -15,29 +19,54 @@ class StoresController extends Controller
     return view('stores.index', compact('stores'));
 }
 
-public function create(Request $request)
-    {
-        // Validate the form data
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'description' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-        ]);
+public function storeStore(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'street' => 'required|string|max:255',
+        'city' => 'required|string|max:255',
+        'state' => 'required|string|max:255',
+        'postal_code' => 'required|string|max:255',
+        'country' => 'required|string|max:255',
+        'code' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'your_email' => 'required|string|email|max:255',
+        'cuisine' => 'required|string|max:255',
+        'description' => 'required|string|max:255',
+    ]);
 
-        $image = $request->file('image');
-        $filename = $image->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $filename, 'public');
+    // Save location
+    $location = new Location;
+    $location->street = $request->street;
+    $location->city = $request->city;
+    $location->state = $request->state;
+    $location->postal_code = $request->postal_code;
+    $location->country = $request->country;
+    $location->code = $request->code;
+    $location->phone = $request->phone;
+    $location->your_email = $request->your_email;
+    $location->save();
 
-        $store = new Store;
-        $store->name = $request->input('name');
-        $store->description = $request->input('description');
-        $store->image_path = $path;
+    // Save cuisine
+    $cuisine = new Cuisine;
+    $cuisine->name = $request->cuisine;
+    $cuisine->save();
+
+    // Save store
+    $store = new Store;
+    $store->name = $request->name;
+    $store->location_id = $location->id;
+    $store->cuisine_id = $cuisine->id;
+    $store->description = $request->description;
+    $store->is_accepted = false;
     $store->save();
 
-    // redirect to the newly created store's page
-    return redirect()->route('stores.show', $store->id);
+    // Redirect to the waiting page
+    return view('waiting-page');
 }
-    
+public function store(){
+    return view("store_waiting");
+}
 
 public function menu($storeId, $menuId)
 {

@@ -88,3 +88,4 @@ Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu']
 
 Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
 
+Route::get('/waiting', [StoresController::class, 'store'])->name('stores.store');
