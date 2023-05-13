@@ -34,7 +34,7 @@ textarea {
 }
 #main > nav, 
 #main > aside {
-  flex: 0 0 20vw;
+  
   background: rgb(255, 255, 255);
 }
 #main > nav {
@@ -427,27 +427,14 @@ body {
 }
 </style>
 <body>
-  <header>@yield('title')</header>
+  
   <div id="main">
     <article>@yield('content')</article>
     <nav></nav>
     <aside></aside>
   </div>
   
-  <script>
-    fetch('https://secure.geonames.org/countryInfoJSON?formatted=true&lang=en')
-      .then(response => response.json())
-      .then(data => {
-        const countries = data.geonames;
-        const select = document.getElementById('country');
-        countries.forEach(country => {
-          const option = document.createElement('option');
-          option.value = country.countryCode;
-          option.textContent = country.countryName;
-          select.appendChild(option);
-        });
-      });
-    </script>
+  
 </body>
 
     </html>
