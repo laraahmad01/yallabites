@@ -75,12 +75,6 @@ Route::get('/restaurant/create', [RestaurantController::class,'create'])->name('
 
 Route::get('Reviews/{id}',[StoresController::class,'seeReviews'])->name('storeReviews');
 
-//Route::post("store/{id}", [reviewcontroller::class,'store'])->name('store');
-//Route::get("create/{id}", [reviewcontroller::class,'create'])->name('create');
-//Route::get('/review', function () {
-  //  return view('reviews');
-//});
-//Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
 
 Route::get('review/{id}',[ReviewsController::class,'review'])->name('reviews');
 Route::post('postreview/{id}',[ReviewsController::class,'addReview'])->name('addReview');
@@ -89,15 +83,17 @@ Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
 Route::delete('/reviews/{id}', [ReviewsController::class,'destroy'])->name('reviews.destroy');
+Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoreOrderController::class, 'create'])->name('stores.order');
 
 Route::get('/stores/{store_id}/reviews', 'App\Http\Controllers\StoreController@showReviews')->name('store.reviews');
 
     // Show order form
-    Route::get('createorder', [StoreOrderController::class, 'create'])->name('store.orders.create');
-    
+ //   Route::get('createorder', [StoreOrderController::class, 'create'])->name('');
+    Route::get('createorder/{id}',[StoreOrderController::class,'create'])->name('store.orders.create');
+
     // Store order
-    Route::post('storeorders', [StoreOrderController::class, 'store'])->name('store.orders.store');
+    Route::post('postorder/{id}', [StoreOrderController::class, 'storeOrder'])->name('store.orders.store');
     
     // Show specific order
-    Route::get('showorders}', [StoreOrderController::class, 'show'])->name('store.orders.show');
 
+    Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');

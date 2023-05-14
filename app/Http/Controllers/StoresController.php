@@ -18,7 +18,7 @@ class StoresController extends Controller
 
 public function create(Request $request)
     {
-        dd($request->all());
+   
         // Validate the form data
         $validatedData = $request->validate([
             'name' => 'required|max:255',
