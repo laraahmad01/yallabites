@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use App\Models\CartItem;
+
 
 class LoginController extends Controller
 {

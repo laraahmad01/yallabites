@@ -9,7 +9,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\StoreOrderController;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -105,3 +105,8 @@ Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showor
 Route::post('/add-to-cart', [CartController::class, 'addItem'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::post('/cart/submit', [CartController::class, 'submitCart'])->name('cart.submit');
+
+
+Route::get('/search/items', [SearchController::class ,'searchItems'])->name('search.items');
+
+
