@@ -41,6 +41,8 @@ return [
     | application. If disabled, a simple generic error page is shown.
     |
     */
+    App\Providers\AppServiceProvider::class,
+
 
     'debug' => (bool) env('APP_DEBUG', false),
 
