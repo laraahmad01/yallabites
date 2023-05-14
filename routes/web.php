@@ -7,6 +7,7 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\StoreOrderController;
 
 
 /*
@@ -72,19 +73,31 @@ Route::get('/access-denied', function () {
 
 Route::get('/restaurant/create', [RestaurantController::class,'create'])->name('restaurant.create');
 
+Route::get('Reviews/{id}',[StoresController::class,'seeReviews'])->name('storeReviews');
 
 //Route::post("store/{id}", [reviewcontroller::class,'store'])->name('store');
 //Route::get("create/{id}", [reviewcontroller::class,'create'])->name('create');
-Route::get('/review', function () {
-    return view('reviews');
-});
-Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
+//Route::get('/review', function () {
+  //  return view('reviews');
+//});
+//Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
 
-
+Route::get('review/{id}',[ReviewsController::class,'review'])->name('reviews');
+Route::post('postreview/{id}',[ReviewsController::class,'addReview'])->name('addReview');
 Route::get('/stores', [StoresController::class, 'index'])->name('stores.index');
 Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.create');
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
+Route::delete('/reviews/{id}', [ReviewsController::class,'destroy'])->name('reviews.destroy');
 
-Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
+Route::get('/stores/{store_id}/reviews', 'App\Http\Controllers\StoreController@showReviews')->name('store.reviews');
+
+    // Show order form
+    Route::get('createorder', [StoreOrderController::class, 'create'])->name('store.orders.create');
+    
+    // Store order
+    Route::post('storeorders', [StoreOrderController::class, 'store'])->name('store.orders.store');
+    
+    // Show specific order
+    Route::get('showorders}', [StoreOrderController::class, 'show'])->name('store.orders.show');
 

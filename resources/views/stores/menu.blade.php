@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <h2>{{ $store->name }} - {{ $menu->name }} Menu</h2>
+  
     <div class="product-container">
     @if (count($items) > 0)
         <div class="product-cards">
@@ -33,5 +34,7 @@
     @else
         <p>No items found in this menu.</p>
     @endif
+
 </div>
+
 @endsection
