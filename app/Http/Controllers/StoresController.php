@@ -69,9 +69,4 @@ public function menu($storeId, $menuId)
 
     return view('stores.item_details', compact('store', 'menu', 'item'));
 }
-
-
-
-
-
 }

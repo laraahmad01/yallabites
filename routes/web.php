@@ -8,7 +8,6 @@ use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\StoreOrderController;
-
 use App\Http\Controllers\CartController;
 
 /*
@@ -91,5 +90,4 @@ Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('st
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
 
 Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
-
-    Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
+Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
