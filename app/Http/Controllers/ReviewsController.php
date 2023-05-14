@@ -6,9 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\Store;
 
+use Illuminate\Support\Facades\Auth;
 
-class ReviewsController extends Controller
-{
   /*  public function create(Request $request)
 {
   
@@ -33,31 +32,62 @@ class ReviewsController extends Controller
 }*/
 
 
-public function create(Request $request, $store_id)
+
+
+
+class ReviewsController extends Controller
 {
-    $store = Store::findOrFail($store_id);
+    public function review($id){
+        $store=Store::find($id);
+        return view('stores.addReviews')->with('store',$store);
+        }
 
-    
 
+
+        public function addReview($id,Request $request){
+        $obj=new Review();
+        $obj->description=$request->description;
+        $obj->rating=$request->rating;
+       
+        $obj->user_id=Auth::user()->id;
+             $obj->store_id=$id;
+        $obj->save();
+       // return redirect(Route('stores.show_menu',['id'=>$id]));
+       return redirect(Route('stores.show_menu',['storeId'=>$id])); 
+           }
+
+           public function destroy($id)
+           {
+               $review = Review::findOrFail($id);
+               $review->delete();
+           
+               return redirect()->back()->with('success', 'Review deleted successfully.');
+           }
+           
+
+    }
+
+
+/*public function showReviewForm($id)
+{
+    $store = Store::find($id);
+    return view('reviews.create', compact('store'));
+}
+
+public function storeReview(Request $request, $id)
+{
     $validatedData = $request->validate([
-        'description' => 'required|string',
-        'rating' => 'required|numeric|min:1|max:5'
+        'rating' => 'required',
+        'comment' => 'required',
     ]);
 
-    $review = new Review();
+    $review = new StoreReview;
+    $review->store_id = $id;
     $review->user_id = auth()->user()->id;
-    $review->store_id = $store->id;
-    $review->description = $request->input('description');
-    $review->rating = $request->input('rating');
+    $review->rating = $validatedData['rating'];
+    $review->comment = $validatedData['comment'];
     $review->save();
 
-    return "ok";
+    return redirect('/stores/'.$id)->with('success', 'Review added successfully!');
 }
-
-public function review($store_id)
-{
-    $store = Store::findOrFail($store_id);
-    $reviews = $store->reviews()->orderBy('created_at', 'desc')->paginate(10);
-
-    return view('reviews', ['store_id' => $store_id]);}
-}
+}*/

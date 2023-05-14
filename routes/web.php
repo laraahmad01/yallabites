@@ -7,6 +7,8 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\StoreOrderController;
+
 use App\Http\Controllers\CartController;
 
 /*
@@ -72,20 +74,22 @@ Route::get('/access-denied', function () {
 
 Route::get('/restaurant/create', [RestaurantController::class,'create'])->name('restaurant.create');
 
+
+//Route::post("store/{id}", [reviewcontroller::class,'store'])->name('store');
+//Route::get("create/{id}", [reviewcontroller::class,'create'])->name('create');
 Route::get('/review', function () {
     return view('reviews');
 });
 Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
 
 
+Route::get('review/{id}',[ReviewsController::class,'review'])->name('reviews');
+Route::post('postreview/{id}',[ReviewsController::class,'addReview'])->name('addReview');
 Route::get('/stores', [StoresController::class, 'index'])->name('stores.index');
 Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.create2');
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
-Route::get('/stores/{storeId}/items/{itemId}', [StoreController::class, 'showItemDetails'])->name('stores.item_details');
 
-Route::post('/add-to-cart', [CartController::class, 'addItem'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-Route::post('/cart/submit', [CartController::class, 'submitCart'])->name('cart.submit');
+Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
 
-
+    Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');

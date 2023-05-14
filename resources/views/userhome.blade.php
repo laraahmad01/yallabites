@@ -92,6 +92,8 @@
               quae.
             </p>
             <p class="food-price">Price: &#8377; 250</p>
+
+
           </div>
         </div>
 

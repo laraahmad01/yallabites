@@ -22,13 +22,14 @@ class Order extends Model
         return $this->belongsTo(Cart::class);
     }
     protected $fillable = [
-        'user_id',
-        'store_id',
-        'address',
-        'payment_option',
-        'total',
-        'delivery_charge',
-        'subtotal',
+            'user_id',
+            'store_id',
+           'quantity',
+            'total_price',
+            'payment_method',
+            'shipping_address',
+            'billing_address',
+            
     ];
 use HasFactory;    
 }

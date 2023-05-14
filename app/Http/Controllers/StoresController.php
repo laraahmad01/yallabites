@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Models\Menu;
 use App\Models\Item;
+use App\Models\Review;
 use App\Models\Cart;
 
 class StoresController extends Controller
@@ -18,6 +19,7 @@ class StoresController extends Controller
 
 public function create(Request $request)
     {
+   
         // Validate the form data
         $validatedData = $request->validate([
             'name' => 'required|max:255',
@@ -54,8 +56,9 @@ public function menu($storeId, $menuId)
     {
         $store = Store::findOrFail($storeId);
         $menus = $store->menus;
+        $rev = $store->reviews;
     
-        return view('stores.show_menu', compact('store', 'menus'));
+        return view('stores.show_menu', compact('store', 'menus', 'rev'));
     }
     
     public function showItemDetails($storeId, $menuId, $itemId)
@@ -66,5 +69,9 @@ public function menu($storeId, $menuId)
 
     return view('stores.item_details', compact('store', 'menu', 'item'));
 }
+
+
+
+
 
 }
