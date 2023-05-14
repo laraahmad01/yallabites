@@ -9,7 +9,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\StoreOrderController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\SearchController;
+
 
 
 /*
@@ -93,15 +93,7 @@ Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu']
 Route::delete('/reviews/{id}', [ReviewsController::class,'destroy'])->name('reviews.destroy');
 Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoreOrderController::class, 'create'])->name('stores.order');
 
-Route::get('/stores/{store_id}/reviews', 'App\Http\Controllers\StoreController@showReviews')->name('store.reviews');
-
-    // Show order form
- //   Route::get('createorder', [StoreOrderController::class, 'create'])->name('');
-    Route::get('createorder/{id}',[StoreOrderController::class,'create'])->name('store.orders.create');
-
-    // Store order
-    Route::post('postorder/{id}', [StoreOrderController::class, 'storeOrder'])->name('store.orders.store');
-    
-    // Show specific order
-
-    Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
+Route::get('/stores/{store_id}/reviews', [StoreController::class, 'showReviews'])->name('store.reviews');
+Route::get('createorder/{id}',[StoreOrderController::class,'create'])->name('store.orders.create');
+Route::post('postorder/{id}', [StoreOrderController::class, 'storeOrder'])->name('store.orders.store');
+Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
