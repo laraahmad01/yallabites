@@ -49,6 +49,9 @@ class CartController extends Controller
 
     public function showCart()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
         $userId = Auth::id();
 
         // Get the user's cart and cart items

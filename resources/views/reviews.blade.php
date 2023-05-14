@@ -1,14 +1,8 @@
-@php
-    $store_id = 123; // Replace with the actual store ID
-@endphp
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta charset="UTF-8">
-    <title>My Review Form</title>
+@extends('layouts.app')
+@section('content')
+@if (!Auth::check())
+        <script>window.location = "{{ route('login') }}";</script>
+    @else
     <style>
       /* Modern CSS styles for the form */
       form {
@@ -58,8 +52,7 @@ button[type="submit"]:hover {
 }
 
     </style>
-  </head>
-  <body>
+
   
   <form method="post" action="{{ route('review', ['store_id' => $store_id]) }}">
         @csrf
@@ -80,5 +73,5 @@ button[type="submit"]:hover {
     
       <button type="submit">Save</button>
     </form>
-  </body>
-</html>
+@endif
+@endsection
