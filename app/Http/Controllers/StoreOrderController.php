@@ -24,6 +24,8 @@ class StoreOrderController extends Controller
         $obj->shipping_address = $request->input('shipping_address');
         $obj->billing_address = $request->input('billing_address');
         $obj->payment_method = $request->input('payment_method');
+        $obj->status = 'pending'; // Set the status to 'pending'
+
     
         // If the payment method is online, you could also process the payment here
     
@@ -35,7 +37,29 @@ class StoreOrderController extends Controller
     public function showOrders()
 {
     $orders = Order::where('user_id', Auth::user()->id)->get();
+  
+
     return view('showorder', ['orders' => $orders]);
+}
+// in your OrderController
+
+public function destroy($id)
+{
+    $order = Order::findOrFail($id);
+    $order->delete();
+
+    return redirect()->route('showorder')
+                     ->with('success', 'Order has been deleted successfully');
+}
+
+
+public function track($id)
+{
+    // Retrieve order data from the database or API based on the provided ID
+    $order = Order::findOrFail($id);
+
+    // Pass the order data to a view
+    return view('trackorder', compact('order'));
 }
 
    // OrderController.php

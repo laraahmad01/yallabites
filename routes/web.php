@@ -10,7 +10,7 @@ use App\Http\Controllers\StoresController;
 use App\Http\Controllers\StoreOrderController;
 use App\Http\Controllers\SearchController;
 
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/userhome', function () {
     return view('userhome');
@@ -84,6 +84,7 @@ Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
 Route::delete('/reviews/{id}', [ReviewsController::class,'destroy'])->name('reviews.destroy');
+Route::delete('/orders/{order}', [StoreOrderController::class,'destroy'])->name('orders.destroy');
 
 Route::get('/stores/{store_id}/reviews', 'App\Http\Controllers\StoreController@showReviews')->name('store.reviews');
 
@@ -101,4 +102,4 @@ Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showor
     //Route::get('/store/{id}', 'StoresController@show')->name('store.show');
     Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
     Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
-    
+    Route::get('/track-order/{id}', [StoreOrderController::class,'track'])->name('orders.track');
