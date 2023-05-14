@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RolesController;
@@ -99,3 +99,6 @@ Route::post('postorder/{id}', [StoreOrderController::class, 'storeOrder'])->name
 Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
     //Route::get('/search', [StoresController::class, 'search'])->name('store.search');
     //Route::get('/store/{id}', 'StoresController@show')->name('store.show');
+    Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
+    Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
+    
