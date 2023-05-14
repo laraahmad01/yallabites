@@ -9,6 +9,8 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\StoreOrderController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\SearchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +90,18 @@ Route::get('/stores', [StoresController::class, 'index'])->name('stores.index');
 Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.create2');
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
+Route::delete('/reviews/{id}', [ReviewsController::class,'destroy'])->name('reviews.destroy');
+Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoreOrderController::class, 'create'])->name('stores.order');
 
-Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
-Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
+Route::get('/stores/{store_id}/reviews', 'App\Http\Controllers\StoreController@showReviews')->name('store.reviews');
+
+    // Show order form
+ //   Route::get('createorder', [StoreOrderController::class, 'create'])->name('');
+    Route::get('createorder/{id}',[StoreOrderController::class,'create'])->name('store.orders.create');
+
+    // Store order
+    Route::post('postorder/{id}', [StoreOrderController::class, 'storeOrder'])->name('store.orders.store');
+    
+    // Show specific order
+
+    Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
