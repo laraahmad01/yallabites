@@ -21,6 +21,11 @@ class Item extends Model
     {
         return $this->belongsToMany(Item::class, 'cart_item', 'cart_id', 'item_id')->withPivot('quantity');
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
     protected $fillable = [
         'menu_id',
         'category_id',

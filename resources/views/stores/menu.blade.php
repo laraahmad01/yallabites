@@ -23,8 +23,14 @@
                         <div class="product-bottom-details">
                             <div class="product-price"><h4>{{ $item->price }}</h4></div>
                             <div class="product-links">
-                                <a href=""><i class="fa fa-shopping-cart"></i></a>
-                            </div>
+                            <form action="{{ route('cart.add') }}" method="POST">
+
+        @csrf
+        <input type="hidden" name="item_id" value="{{ $item->id }}">
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </form>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -34,4 +40,21 @@
         <p>No items found in this menu.</p>
     @endif
 </div>
+<script>
+$('.btn-primary').on('click', function() {
+    $.ajax({
+        url: '{{ route('cart.add') }}',
+        data: {
+            item_id: $(this).data('item-id')
+        },
+        success: function(response) {
+            if (response.success) {
+                alert('Item added to cart!');
+            } else {
+                alert('Something went wrong. Please try again later.');
+            }
+        }
+    });
+});
+</script>
 @endsection

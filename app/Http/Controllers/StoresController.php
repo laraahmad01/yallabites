@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Models\Menu;
 use App\Models\Item;
+use App\Models\Cart;
 
 class StoresController extends Controller
 {
@@ -66,5 +67,4 @@ public function menu($storeId, $menuId)
     return view('stores.item_details', compact('store', 'menu', 'item'));
 }
 
-    
 }
