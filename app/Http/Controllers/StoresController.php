@@ -10,9 +10,8 @@ use App\Models\Cuisine;
 
 
 use Illuminate\Http\Request;
-use App\Models\Store;
-use App\Models\Menu;
-use App\Models\Item;
+
+use Illuminate\Support\Facades\Auth;
 use App\Models\Review;
 use App\Models\Cart;
 
@@ -68,14 +67,16 @@ public function storeNewStore(Request $request)
     if (Auth::check()) {
         $store->user_id = Auth::user()->id;
         $store->save();
-    } else {
-        return redirect()->route('home')->with('redirect_path', route('submit store'))->withInput($request->input());
+        $username= Auth::user()->name;
+        return redirect()->route('addmenu');
+
+    } else { 
+        
+
+        return redirect()->guest(route('login'))->intended(route('submit.store'))->withInput($request->input());
     }
 
-    $store->save();
-
-    // Redirect to the waiting page
-    return "okahyy";
+    
 }
 
 public function store(){

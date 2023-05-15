@@ -8,7 +8,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\CartItem;
+
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+
 class LoginController extends Controller
 {
     /*
@@ -70,5 +73,9 @@ public function handleProviderCallback($provider)
 
     return redirect('/home');
 }
-
+public function showLoginForm()
+{
+    Session::flash('login_required', 'Please log in to register a store.');
+    return view('auth.login');
+}
 }

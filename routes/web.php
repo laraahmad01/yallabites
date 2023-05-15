@@ -126,3 +126,10 @@ Route::get('/addmenu', function () {
 })->name('addmenu');
 
 Route::post('/Createstores', [StoresController::class, 'storeNewStore'])->name('submit.store');
+Route::get('/login', [LoginController::class,'redirectToProvider'])->name('social.login');
+Route::get('/login', [LoginController::class,'showLoginForm'])->name('login');
+
+Route::post('/Savemenus', [MenuController::class, 'storeMenu'])->name('menu.store');
+Route::get('/StoreProfile', function () {
+    return view('StoreProfile');
+})->name('store.profile');
