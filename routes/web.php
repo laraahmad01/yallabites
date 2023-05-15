@@ -109,5 +109,7 @@ Route::delete('/cart/delete/{item_id}', [CartController::class, 'deleteItem'])->
 
 
 Route::get('/search/items', [SearchController::class ,'searchItems'])->name('search.items');
+Route::get('/products', [StoresController::class, 'showProducts'])->name('stores.showProducts');
+
 
 

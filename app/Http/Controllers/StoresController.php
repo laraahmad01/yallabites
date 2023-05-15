@@ -69,4 +69,21 @@ public function menu($storeId, $menuId)
 
     return view('stores.item_details', compact('store', 'menu', 'item'));
 }
+
+
+public function showProducts(Request $request)
+{
+    if ($request->has('items')) {
+        $products = $request->items;
+    } else {
+        $products = Item::all();
+    }
+
+    $store = Store::first();
+    $menu = $store->menus()->first();
+
+    return view('products', compact('products', 'store', 'menu'));
+}
+
+
 }

@@ -1,32 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/itemslist.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <h1>Search Results</h1>
-
-    @if ($items->count() > 0)
-        <table>
-            <thead>
-                <tr>
-                    <th>Item Name</th>
-                    <th>Price</th>
-                    <th>Store</th>
-                    <th>Cuisine</th>
-                    <th>Category</th>
-                </tr>
-            </thead>
-            <tbody>
+        @if (count($items) > 0)
+            <div class="product-cards">
                 @foreach ($items as $item)
-                    <tr>
-                        <td>{{ $item->name }}</td>
-                        <td>{{ $item->price }}</td>
-                        <td>{{ $item->menu->store->name }}</td>
-                        <td>{{ $item->menu->store->cuisine->name }}</td>
-                        <td>{{ $item->category->name }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @else
-        <p>No items found.</p>
-    @endif
+                    <div class="product-card">
+                        <div class="product-tumb">
+                            <a href="{{ route('stores.item_details', ['storeId' => $store->id, 'menuId' => $menu->id, 'itemId' => $item->id]) }}">
+                                <img src="{{ $item->image }}" alt="{{ $item->name }}">
+                            </a>
+                        </div>
+                        <div class="product-details">
+                            <span class="product-catagory">{{ $item->category->name }}</span>
+                            <h4>
+                                <a href="{{ route('stores.item_details', ['storeId' => $store->id, 'menuId' => $menu->id, 'itemId' => $item->id]) }}">{{ $item->name }}</a></h4>
+<p>{{ $item->description }}</p>
+<div class="product-bottom-details">
+<div class="product-price">
+<h4>{{ $item->price }}</h4>
+</div>
+<div class="product-links">
+<form action="{{ route('cart.add') }}" method="POST">
+@csrf
+<input type="hidden" name="item_id" value="{{ $item->id }}">
+<button type="submit" class="btn btn-primary">Add to Cart</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+@endforeach
+</div>
+@else
+<p>No items found.</p>
+@endif
+</div>
 @endsection

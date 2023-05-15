@@ -13,14 +13,15 @@
       </div>
     </section>
     <form action="{{ route('search.items') }}" method="GET">
-            @csrf
-            <div class="input-group mb-3">
-                <input type="text" name="query" class="form-control" placeholder="Search...">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </div>
-            </div>
-        </form>
+    @csrf
+    <div class="input-group mb-3">
+        <input type="text" name="query" class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
 
     <section id="about">
       <div class="about-wrapper container">
