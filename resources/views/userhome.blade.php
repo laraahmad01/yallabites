@@ -7,9 +7,9 @@
 
     <section class="showcase-area" id="showcase">
       <div class="showcase-container">
-        <h1 class="main-title" id="home">Eat Right Food</h1>
-        <p>Eat Healty, it is good for our health.</p>
-        <a href="#food-menu" class="btn btn-primary">Menu</a>
+        <h1 class="main-title" id="home">Treat Your Tastebuds</h1>
+        <p>Dive into a Gastronomic Wonderland, Where Every Bite is Pure Bliss!</p>
+        <a href="#food-menu" class="btn btn-primary">Our Stores</a>
       </div>
     </section>
     <form action="{{ route('search.items') }}" method="GET">

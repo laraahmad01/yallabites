@@ -20,7 +20,7 @@
   
 </head>
 
-<body>
+<body style="font-family: Poppins, sans-serif;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

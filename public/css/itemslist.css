@@ -12,13 +12,9 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     margin: 0 auto;
-    max-width: 960px; 
+    
 }
 
-body
-{
-    font-family: 'Roboto', sans-serif;
-}
 a
 {
     text-decoration: none;
@@ -30,6 +26,7 @@ a
     margin: 20px;
     background: #fafafa;
     display: inline-block;
+    height:433.84px;
 }
 
 .badge {
@@ -60,6 +57,7 @@ a
 
 .product-details {
     padding: 20px;
+    height:233px;
 }
 
 .product-catagory {
