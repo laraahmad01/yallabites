@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
-
-
+@section('content')
 <style>
 /* Layout */
 .container {
@@ -86,7 +84,7 @@
 }
 
     </style>
-    @section('content')
+    
     <div class="container">
         <div class="menu-list">
             <h2>{{ $store->name }} Menus</h2>
@@ -125,4 +123,4 @@
         <a href="{{ Route('store.orders.create',['id'=>$store->id])}}">Order</a>
     </div>
 
-
+@endsection
