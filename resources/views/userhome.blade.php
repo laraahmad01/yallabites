@@ -52,7 +52,7 @@
     @if($index < 3)
         <div class="food-type {{ $cuisine->slug }}">
             <div class="img-container">
-                <img src="https://i.postimg.cc/Nffm6Rkk/food2.jpg" alt="{{ $cuisine->name }}" />
+                <img src="{{$cuisine->image}}" alt="{{ $cuisine->name }}" />
                 <div class="img-content">
                     <h3>{{ $cuisine->name }}</h3>
                     <a href="{{ $cuisine->learn_more_link }}" class="btn btn-primary" target="_blank">Learn More</a>
@@ -124,7 +124,7 @@
     <div class="testimonial-box">
       <div class="customer-detail">
         <div class="customer-photo">
-          <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />
+          <img src="{{$review->user->image}}" alt="" />
           <p class="customer-name">{{$review->user->name}}</p>
         </div>
       </div>
@@ -162,20 +162,25 @@
         </div>
 
         <div class="form-container">
+          <h2>Join Us</h2>
+          <p style="padding-top:5px">Are you a cook, resturant, or store? Join our YallaBites family now!</p>
+          <a href="#" class="btn btn-primary">Become a Store</a>
+           <br><br><br>
           <h2>Contact Us</h2>
           <input type="text" placeholder="Your Name" />
           <input type="email" placeholder="E-Mail" />
           <textarea
             cols="30"
-            rows="6"
+            rows="1"
             placeholder="Type Your Message"
           ></textarea>
+          <br>
           <a href="#" class="btn btn-primary">Submit</a>
         </div>
       </div>
     </section>
     <footer id="footer">
-      <h2>Restraunt &copy; all rights reserved</h2>
+      <h2>YallaBites &copy; all rights reserved</h2>
     </footer>
   
   <!-- 

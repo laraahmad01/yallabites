@@ -383,6 +383,7 @@ body {
 
 .contact-container {
   display: flex;
+  height: 500px;
   background: #fff;
 }
 
@@ -392,8 +393,9 @@ body {
 
 .contact-img img {
   display: block;
-  height: 400px;
+  height: 500px;
   width: 100%;
+  margin-left:-10px;
   object-position: center;
   object-fit: cover;
 }
@@ -429,15 +431,14 @@ body {
 }
 
 .form-container h2 {
-  font-size: 2.7rem;
+  font-size: 2rem;
   font-weight: 500;
   color: #444;
-  margin-bottom: 1rem;
-  margin-top: -1.2rem;
 }
 
 .form-container a {
-  font-size: 1.3rem;
+  margin-top:-5px;
+  font-size: 0.9rem;
 }
 
 #footer h2 {
