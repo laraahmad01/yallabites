@@ -197,7 +197,7 @@ body {
 /* ..........////Food category///........... */
 
 #food {
-  padding: 5rem 0 10rem 0;
+  padding: 0rem 0 5rem 0;
 }
 
 #food h2 {
@@ -355,12 +355,14 @@ body {
 .testimonial-box .testimonial-text {
   margin: 1rem 0;
   color: #444;
+  font-size: 15px;
 }
 
 .testimonial-box {
   text-align: center;
   padding: 1rem;
 }
+
 
 .customer-photo img {
   display: block;
@@ -381,6 +383,7 @@ body {
 
 .contact-container {
   display: flex;
+  height: 500px;
   background: #fff;
 }
 
@@ -390,8 +393,9 @@ body {
 
 .contact-img img {
   display: block;
-  height: 400px;
+  height: 500px;
   width: 100%;
+  margin-left:-10px;
   object-position: center;
   object-fit: cover;
 }
@@ -427,15 +431,14 @@ body {
 }
 
 .form-container h2 {
-  font-size: 2.7rem;
+  font-size: 2rem;
   font-weight: 500;
   color: #444;
-  margin-bottom: 1rem;
-  margin-top: -1.2rem;
 }
 
 .form-container a {
-  font-size: 1.3rem;
+  margin-top:-5px;
+  font-size: 0.9rem;
 }
 
 #footer h2 {

@@ -20,7 +20,7 @@
                     <div class="product-details">
                         <span class="product-catagory">{{ $item->category->name }}</span>
                         <h4><a href="{{ route('stores.item_details', ['storeId' => $store->id, 'menuId' => $menu->id, 'itemId' => $item->id]) }}">{{ $item->name }}</a></h4>
-                        <p>{{ $item->description }}</p>
+                        <p style="height:72px">{{ $item->description }}</p>
                         <div class="product-bottom-details">
                             <div class="product-price"><h4>{{ $item->price }}</h4></div>
                             <div class="product-links">

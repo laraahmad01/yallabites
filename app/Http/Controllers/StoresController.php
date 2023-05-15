@@ -119,12 +119,9 @@ public function showProducts(Request $request)
     } else {
         $products = Item::all();
     }
-
     $store = Store::first();
     $menu = $store->menus()->first();
 
     return view('products', compact('products', 'store', 'menu'));
 }
-
-
 }
