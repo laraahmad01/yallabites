@@ -44,20 +44,29 @@
     <section id="food">
       <h2>Types of food</h2>
       <div class="food-container container">
-      @foreach($cuisines as $cuisine)
-    <div class="food-type {{ $cuisine->slug }}">
-        <div class="img-container">
-            <img src="https://i.postimg.cc/Nffm6Rkk/food2.jpg" alt="{{ $cuisine->name }}" />
-            <div class="img-content">
-                <h3>{{ $cuisine->name }}</h3>
-                <a href="{{ $cuisine->learn_more_link }}" class="btn btn-primary" target="_blank">Learn More</a>
+      @foreach($cuisines as $index => $cuisine)
+    @if($index < 3)
+        <div class="food-type {{ $cuisine->slug }}">
+            <div class="img-container">
+                <img src="https://i.postimg.cc/Nffm6Rkk/food2.jpg" alt="{{ $cuisine->name }}" />
+                <div class="img-content">
+                    <h3>{{ $cuisine->name }}</h3>
+                    <a href="{{ $cuisine->learn_more_link }}" class="btn btn-primary" target="_blank">Learn More</a>
+                </div>
             </div>
         </div>
-    </div>
+    @else
+        @break
+    @endif
 @endforeach
 
+
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; padding-top:20px">
+      <a href="" class="btn btn-primary" target="_blank">view more</a>
       </div>
     </section>
+    
     <section id="food-menu">
       <h2 class="food-menu-heading">Food Menu</h2>
       <div class="food-menu-container container">

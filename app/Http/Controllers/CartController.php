@@ -46,32 +46,37 @@ class CartController extends Controller
     }
 
     public function showCart()
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-        $userId = Auth::id();
-
-        // Get the user's cart and cart items with related item and menu
-        $cart = Cart::with('cartItems.item.menu.store')->where('user_id', $userId)->first();
-
-        // If the user doesn't have a cart, return an empty cart
-        if (!$cart) {
-            $cartItems = [];
-            $totalQuantity = 0;
-            $totalPrice = 0;
-            $store = null;
-        } else {
-            $cartItems = $cart->cartItems;
-            $totalQuantity = $cartItems->sum('quantity');
-            $totalPrice = $cartItems->sum(function ($cartItem) {
-                return  $cartItem->item->price;
-            });
-            $store = $cartItems->isNotEmpty() ? $cartItems->first()->item->menu->store : null;
-        }
-
-        return view('cart', compact('cartItems', 'totalQuantity', 'totalPrice', 'store'));
+{
+    if (!Auth::check()) {
+        return redirect()->route('login');
     }
+    
+    $userId = Auth::id();
+
+    // Get the user's cart and cart items with related item and menu
+    $cart = Cart::with('cartItems.item.menu.store')->where('user_id', $userId)->first();
+
+    // If the user doesn't have a cart or there are no items in the cart, display "no items"
+    if (!$cart || $cart->cartItems->isEmpty()) {
+        $cartItems = collect();
+        $totalQuantity = 0;
+        $totalPrice = 0;
+        $store = null;
+        $noItems = true;
+    } else {
+        $cartItems = $cart->cartItems;
+        $totalQuantity = $cartItems->sum('quantity');
+        $totalPrice = $cartItems->sum(function ($cartItem) {
+            return  $cartItem->item->price;
+        });
+        $store = $cartItems->first()->item->menu->store;
+        $noItems = false;
+    }
+
+    return view('cart', compact('cartItems', 'totalQuantity', 'totalPrice', 'store', 'noItems'));
+}
+
+    
 
     public function deleteItem($itemId)
     {

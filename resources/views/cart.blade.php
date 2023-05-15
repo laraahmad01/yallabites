@@ -10,9 +10,9 @@
 		<h1>My Basket</h1>
 		<div class="project">
 			<div class="shop">
-    @if($cartItems->isEmpty())
+    @if($cartItems->isEmpty() && !$store)
     <h2>Your cart is empty</h2>
-    <a href="{{ route('stores') }}" class="btn btn-primary">Continue Shopping</a>
+    <a href="{{ route('stores.index') }}" class="btn btn-primary">Continue Shopping</a>
 @else
 
             @foreach ($cartItems as $cartItem)
