@@ -87,13 +87,10 @@ Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu']
 
 Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
 
-Route::get('/waiting', [StoresController::class, 'store'])->name('stores.store');
 
 
 Route::get('/addmenu', function () {
     return view('addmenu');
 })->name('addmenu');
 
-Route::get('/addstore', function () {
-    return view('addmenu');
-})->name('addmenu');
+Route::post('/Createstores', [StoresController::class, 'storeNewStore'])->name('submit.store');

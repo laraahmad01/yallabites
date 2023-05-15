@@ -10,7 +10,7 @@ use App\Models\Cuisine;
 
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class StoresController extends Controller
 {
     public function index()
@@ -19,7 +19,7 @@ class StoresController extends Controller
     return view('stores.index', compact('stores'));
 }
 
-public function storeStore(Request $request)
+public function storeNewStore(Request $request)
 {
     $request->validate([
         'name' => 'required|string|max:255',
@@ -59,11 +59,20 @@ public function storeStore(Request $request)
     $store->cuisine_id = $cuisine->id;
     $store->description = $request->description;
     $store->is_accepted = false;
+
+    if (Auth::check()) {
+        $store->user_id = Auth::user()->id;
+        $store->save();
+    } else {
+        return redirect()->route('home')->with('redirect_path', route('submit store'))->withInput($request->input());
+    }
+
     $store->save();
 
     // Redirect to the waiting page
-    return view('waiting-page');
+    return "okahyy";
 }
+
 public function store(){
     return view("store_waiting");
 }

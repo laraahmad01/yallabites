@@ -7,7 +7,7 @@
    <body class="form-v10">
 	<div class="page-content">
 		<div class="form-v10-content">
-			<form action="{{ route('stores.store') }}" method="POST" enctype="multipart/form-data" class="form-detail"  id="myform">
+			<form action="{{ route('submit.store') }}" method="POST" enctype="multipart/form-data" class="form-detail"  id="myform">
 				@csrf
 
 				<!-- name -->
