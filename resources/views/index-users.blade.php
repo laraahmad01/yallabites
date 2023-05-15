@@ -1,40 +1,49 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Users and Roles</h2>
+    <link rel="stylesheet" href="{{ asset('css/tables.css') }}">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>User ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $user)
-                <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>
-                        @foreach ($user->roles as $role)
-                            {{ $role->name }}
-                        @endforeach
-                    </td>
-                    <td>
-                        
-                        <a href="{{ route('roles.editUser', $user->id) }}" class="btn btn-primary btn-sm">Edit Role</a>
-                        <form action="{{ route('roles.deleteUserRole', $user->id) }}" method="POST" style="display: inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete Role</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="fontclass">
+        <div class="table">
+            <div class="table__body">
+                <div class="table__row table__heading">
+                    <div class="table__cell">User ID</div>
+                    <div class="table__cell">Username</div>
+                    <div class="table__cell">Email</div>
+                    <div class="table__cell">Role</div>
+                    <div class="table__cell">Actions</div>
+                </div>
+                @if (count($users) > 0)
+                    @foreach ($users as $user)
+                        <div class="table__row">
+                            <div class="table__cell">{{ $user->id }}</div>
+                            <div class="table__cell">{{ $user->name }}</div>
+                            <div class="table__cell">{{ $user->email }}</div>
+                            <div class="table__cell">
+                                @foreach ($user->roles as $role)
+                                    {{ $role->name }}
+                                @endforeach
+                            </div>
+                            <div class="table__cell">
+                                <div class="buttons">
+                                    <button class="button button--outline buttons__venta">
+                                        <a href="{{ route('roles.editUser', $user->id) }}">Edit Role</a>
+                                    </button>
+                                    <form action="{{ route('roles.deleteUserRole', $user->id) }}" method="POST"
+                                        class="store-action-form">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="button button--primary buttons__comprar">Delete Role</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <a href="{{ route('stores.create') }}" class="btn btn-primary">Add Store</a>
+                    <p>No stores found.</p>
+                @endif
+            </div>
+        </div>
+    </div>
 @endsection

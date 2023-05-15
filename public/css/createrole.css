@@ -1,0 +1,52 @@
+.role-create-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-left: 0px;
+  }
+  
+  .role-create-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .role-create-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .role-create-input-group {
+    margin-bottom: 20px;
+  }
+  
+  .role-create-label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .role-create-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .role-create-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #16a083;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .role-create-button:hover {
+    background-color: #0d6350;
+  }
+  
+  

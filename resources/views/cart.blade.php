@@ -17,7 +17,7 @@
 
             @foreach ($cartItems as $cartItem)
 				<div class="box">
-					<img src="{{$cartItem->item->image}}">
+					<img class="cartimg" src="{{$cartItem->item->image}}">
 					<div class="content2">
 						<h3>{{ $cartItem->item->name }}</h3>
                         <small>{{ $cartItem->item->menu->store->name }}</small>

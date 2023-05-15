@@ -88,9 +88,7 @@
 <header class="page-header">
   <nav>
     <a href="#0" aria-label="forecastr logo" class="logo">
-      <svg width="140" height="49">
-        <use xlink:href="#logo"></use>
-      </svg>
+      <h2>YallaBites</h2>
     </a>
     <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
       <svg width="20" height="20" aria-hidden="true">
@@ -213,9 +211,7 @@
 
       <div class="notifications">
         <span class="badge">1</span>
-        <svg>
-          <use xlink:href="#users"></use>
-        </svg>
+        <img style="width: 50px; height: 50px; border-radius: 100%;" src="{{ auth()->user()->image }}" />
       </div>
     </div>
   </section>
