@@ -26,10 +26,6 @@ public function searchItems(Request $request)
     })
     ->orWhere('description', 'LIKE', "%{$query}%")
     ->get();
-
-
-
-
     return view('search-results', compact('items'));
 }
 

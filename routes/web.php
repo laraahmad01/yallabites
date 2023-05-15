@@ -97,7 +97,7 @@ Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoreOrderControl
 Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
 
 Route::get('/stores/{store_id}/reviews', [StoreController::class, 'showReviews'])->name('store.reviews');
-Route::get('createorder/{id}',[StoreOrderController::class,'create'])->name('store.orders.create');
+Route::get('createorder/{id}', [StoreOrderController::class, 'create'])->name('store.orders.create');
 Route::post('postorder/{id}', [StoreOrderController::class, 'storeOrder'])->name('store.orders.store');
 Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
 
@@ -105,6 +105,7 @@ Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showor
 Route::post('/add-to-cart', [CartController::class, 'addItem'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::post('/cart/submit', [CartController::class, 'submitCart'])->name('cart.submit');
+Route::delete('/cart/delete/{item_id}', [CartController::class, 'deleteItem'])->name('cart.deleteItem');
 
 
 Route::get('/search/items', [SearchController::class ,'searchItems'])->name('search.items');

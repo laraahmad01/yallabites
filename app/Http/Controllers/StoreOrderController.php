@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class StoreOrderController extends Controller
 {
-    public function create($id,Request $request) {
-        $store=Store::find($id);
-        return view('createorder')->with('store',$store);
-    }
+    public function create($id, Request $request)
+{
+    $store = Store::find($id);
+    return view('createorder', compact('store'));
+}
 
     public function storeOrder($id, Request $request)
     {
