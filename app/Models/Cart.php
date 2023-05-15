@@ -7,24 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-    
-    public function items()
-    {
-        return $this->belongsToMany(Cart::class, 'cart_item', 'item_id', 'cart_id')->withPivot('quantity');
-    }
-    
-    public function order()
-    {
-        return $this->hasOne(Order::class);
-    }
     protected $fillable = [
         'user_id',
     ];
 
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class)
+                    ->withPivot('quantity')
+                    ->withTimestamps();
+    }
+
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }
 

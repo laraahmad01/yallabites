@@ -1,32 +1,41 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-    <link rel="stylesheet" href="{{ asset('css/itemsdetails.css') }}">
+@extends ('layouts.app')
+@section('content')
 
-    </head>
-    <body >
+<title>My Basket</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/cart.css') }}" rel="stylesheet">
 
-    <main>
-  <div class="container">
+<div class="body2">
+    <div class="wrapper2">
+		<h1>Shopping Cart</h1>
+		<div class="project">
+			<div class="shop">
+            @foreach ($cartItems as $cartItem)
+				<div class="box">
+					<img src="{{$cartItem->item->image}}">
+					<div class="content2">
+						<h3>{{ $cartItem->item->name }}</h3>
+                        <small>{{ $cartItem->item->menu->store->name }}</small>
+						<h4>Price: ${{$cartItem->item->price}}</h4>
+						<p class="unit">Quantity: <input name="" value="2"></p>
+						<p class="btn-area"><i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Remove</span></p>
+					</div>
+				</div>
+            @endforeach
+		
+				
+			</div>
+			<div class="right-bar">
+				<p><span>Subtotal</span> <span>{{ $totalPrice }}</span></p>
+				<hr>
+				<p><span>Tax (5%)</span> <span>{{ $totalPrice*0.5 }}</span></p>
+				<hr>
+				<p><span>Shipping</span> <span>$15</span></p>
+				<hr>
+				<p><span>Total</span> <span>{{ $totalPrice*0.5 + 15 }}</span></p><a href="{{ route('store.orders.create', ['id' => $store->id]) }}"><i class="fa fa-shopping-cart"></i>Checkout</a>
+			</div>
+		</div>
+	</div>
 
-          <div class="product-image">
-            <img class="active" src="https://source.unsplash.com/W1yjvf5idqA">
-          </div>
-        
-      <div class="column-xs-12 column-md-5 class2">
-        <h1>Bonsai</h1>
-        <h2>$19.99</h2>
-        <div class="description">
-          <p>The purposes of bonsai are primarily contemplation for the viewer, and the pleasant exercise of effort and ingenuity for the grower.</p>
-          <p>By contrast with other plant cultivation practices, bonsai is not intended for production of food or for medicine. Instead, bonsai practice focuses on long-term cultivation and shaping of one or more small trees growing in a container.</p>
-        </div>
-        <button class="add-to-cart">Add To Cart</button>
-      </div>
-    </div>
 
-</main>
-
-
-    </body>
-        <script src="{{ asset('js/storeslist.js') }}"></script>
-</html>
+@endsection

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     <h2>{{ $store->name }} - {{ $menu->name }} Menu</h2>
+  
     <div class="product-container">
     @if (count($items) > 0)
         <div class="product-cards">
@@ -23,8 +24,14 @@
                         <div class="product-bottom-details">
                             <div class="product-price"><h4>{{ $item->price }}</h4></div>
                             <div class="product-links">
-                                <a href=""><i class="fa fa-shopping-cart"></i></a>
-                            </div>
+                            <form action="{{ route('cart.add') }}" method="POST">
+
+        @csrf
+        <input type="hidden" name="item_id" value="{{ $item->id }}">
+        <button type="submit" class="btn btn-primary">Add to Cart</button>
+    </form>
+</div>
+
                         </div>
                     </div>
                 </div>
@@ -33,5 +40,7 @@
     @else
         <p>No items found in this menu.</p>
     @endif
+
 </div>
+
 @endsection

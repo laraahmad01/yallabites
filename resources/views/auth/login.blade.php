@@ -237,7 +237,7 @@ p {
 			<div class="social-container2">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				<a href="{{ route('social.login', ['provider' => 'google']) }}">Sign in with Google</a>
 			</div>
 			<span class="span1">or use your account</span>
 			<input class="input1" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

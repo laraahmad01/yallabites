@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
+       
         return view('StartingStore');
     }
 }

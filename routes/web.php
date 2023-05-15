@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RolesController;
@@ -7,8 +7,11 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\StoreOrderController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\SearchController;
 
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +29,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/userhome', function () {
     return view('userhome');
@@ -81,11 +84,40 @@ Route::get('/review', function () {
 Route::post("review/{store_id}", [ReviewsController::class,'create'])->name('review');
 
 
+Route::get('review/{id}',[ReviewsController::class,'review'])->name('reviews');
+Route::post('postreview/{id}',[ReviewsController::class,'addReview'])->name('addReview');
 Route::get('/stores', [StoresController::class, 'index'])->name('stores.index');
+Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.create2');
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
+Route::delete('/reviews/{id}', [ReviewsController::class,'destroy'])->name('reviews.destroy');
+Route::delete('/orders/{order}', [StoreOrderController::class,'destroy'])->name('orders.destroy');
+Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoreOrderController::class, 'create'])->name('stores.order');
 
-Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}/details', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
+
+Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoresController::class, 'showItemDetails'])->name('stores.item_details');
+
+Route::get('/stores/{store_id}/reviews', [StoreController::class, 'showReviews'])->name('store.reviews');
+Route::get('createorder/{id}', [StoreOrderController::class, 'create'])->name('store.orders.create');
+Route::post('postorder/{id}', [StoreOrderController::class, 'storeOrder'])->name('store.orders.store');
+Route::get('/orders', [StoreOrderController::class, 'showOrders'])->name('showorder');
+
+
+Route::post('/add-to-cart', [CartController::class, 'addItem'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+Route::post('/cart/submit', [CartController::class, 'submitCart'])->name('cart.submit');
+Route::delete('/cart/delete/{item_id}', [CartController::class, 'deleteItem'])->name('cart.deleteItem');
+
+
+Route::get('/search/items', [SearchController::class ,'searchItems'])->name('search.items');
+Route::get('/products', [StoresController::class, 'showProducts'])->name('stores.showProducts');
+    //Route::get('/search', [StoresController::class, 'search'])->name('store.search');
+    //Route::get('/store/{id}', 'StoresController@show')->name('store.show');
+    Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
+    Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
+    Route::get('/track-order/{id}', [StoreOrderController::class,'track'])->name('orders.track');
+
+
 
 
 

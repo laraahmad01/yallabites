@@ -12,6 +12,16 @@
         <a href="#food-menu" class="btn btn-primary">Menu</a>
       </div>
     </section>
+    <form action="{{ route('search.items') }}" method="GET">
+    @csrf
+    <div class="input-group mb-3">
+        <input type="text" name="query" class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </div>
+</form>
+
 
     <section id="about">
       <div class="about-wrapper container">
@@ -92,6 +102,8 @@
               quae.
             </p>
             <p class="food-price">Price: &#8377; 250</p>
+
+
           </div>
         </div>
 

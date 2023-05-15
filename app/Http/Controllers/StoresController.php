@@ -10,7 +10,12 @@ use App\Models\Cuisine;
 
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Store;
+use App\Models\Menu;
+use App\Models\Item;
+use App\Models\Review;
+use App\Models\Cart;
+
 class StoresController extends Controller
 {
     public function index()
@@ -91,8 +96,9 @@ public function menu($storeId, $menuId)
     {
         $store = Store::findOrFail($storeId);
         $menus = $store->menus;
+        $rev = $store->reviews;
     
-        return view('stores.show_menu', compact('store', 'menus'));
+        return view('stores.show_menu', compact('store', 'menus', 'rev'));
     }
     
     public function showItemDetails($storeId, $menuId, $itemId)
@@ -104,5 +110,20 @@ public function menu($storeId, $menuId)
     return view('stores.item_details', compact('store', 'menu', 'item'));
 }
 
-    
+
+public function showProducts(Request $request)
+{
+    if ($request->has('items')) {
+        $products = $request->items;
+    } else {
+        $products = Item::all();
+    }
+
+    $store = Store::first();
+    $menu = $store->menus()->first();
+
+    return view('products', compact('products', 'store', 'menu'));
+}
+
+
 }

@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+   /* public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
@@ -24,9 +24,22 @@ return new class extends Migration
         
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('store_id')->references('id')->on('stores');
-        });
-        
-    }
+        });*/
+        public function up(): void
+        {
+        Schema::create('orders', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('store_id')->constrained();
+            $table->unsignedInteger('quantity');
+            $table->decimal('total_price', 8, 2);
+            $table->enum('payment_method', ['online', 'cash_on_delivery']);
+            $table->string('shipping_address');
+            $table->string('billing_address');
+            $table->timestamps();
+            });
+        }
+    
 
     /**
      * Reverse the migrations.
