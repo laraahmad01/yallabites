@@ -8,8 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\CartItem;
-
-
+use Laravel\Socialite\Facades\Socialite;
 class LoginController extends Controller
 {
     /*
@@ -56,4 +55,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+public function redirectToProvider($provider)
+{
+    return Socialite::driver($provider)->redirect();
+}
+
+public function handleProviderCallback($provider)
+{
+    $user = Socialite::driver($provider)->user();
+
+    // Do something with the user data, such as creating a new account or logging them in
+
+    return redirect('/home');
+}
+
 }

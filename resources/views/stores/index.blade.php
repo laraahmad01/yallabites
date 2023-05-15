@@ -5,6 +5,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <div id="app" class="container">
+
   @foreach ($stores as $store)
   <a href="{{ route('stores.show_menu', $store->id) }}">           
   <card data-image="{{ $store->image }}">

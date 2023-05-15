@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Controllers\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RolesController;
@@ -11,7 +11,7 @@ use App\Http\Controllers\StoreOrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchController;
 
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +29,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/userhome', function () {
     return view('userhome');
@@ -91,6 +91,7 @@ Route::post('/StoreCreated', [StoresController::class, 'create'])->name('stores.
 Route::get('/stores/{storeId}', [StoresController::class, 'showMenu'])->name('stores.show_menu');
 Route::get('/stores/{storeId}/menus/{menuId}', [StoresController::class, 'menu'])->name('stores.menu');
 Route::delete('/reviews/{id}', [ReviewsController::class,'destroy'])->name('reviews.destroy');
+Route::delete('/orders/{order}', [StoreOrderController::class,'destroy'])->name('orders.destroy');
 Route::get('/stores/{storeId}/menus/{menuId}/items/{itemId}', [StoreOrderController::class, 'create'])->name('stores.order');
 
 
@@ -110,6 +111,11 @@ Route::delete('/cart/delete/{item_id}', [CartController::class, 'deleteItem'])->
 
 Route::get('/search/items', [SearchController::class ,'searchItems'])->name('search.items');
 Route::get('/products', [StoresController::class, 'showProducts'])->name('stores.showProducts');
+    //Route::get('/search', [StoresController::class, 'search'])->name('store.search');
+    //Route::get('/store/{id}', 'StoresController@show')->name('store.show');
+    Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
+    Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
+    Route::get('/track-order/{id}', [StoreOrderController::class,'track'])->name('orders.track');
 
 
 

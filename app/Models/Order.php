@@ -29,8 +29,10 @@ class Order extends Model
             'payment_method',
             'shipping_address',
             'billing_address',
+            'status',
             
-    ];
+    ]; 
+    protected $status = 'pending';
 use HasFactory;    
 }
 
