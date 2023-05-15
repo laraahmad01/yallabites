@@ -118,5 +118,5 @@ Route::get('/products', [StoresController::class, 'showProducts'])->name('stores
     Route::get('/track-order/{id}', [StoreOrderController::class,'track'])->name('orders.track');
 
     Route::get('/userhome', [UserHomeController::class, 'showHome'])->name('userhomecuisine');
-
+ 
 

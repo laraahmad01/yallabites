@@ -2,7 +2,7 @@
 @section('content')
 <style>
 /* Layout */
-.container {
+.container2 {
     display: flex;
     flex-wrap: wrap;
 }
@@ -84,7 +84,7 @@ a{
     letter-spacing: 2px;
     text-transform: uppercase;
 }
-.testimonial-box-container{
+.testimonial-box-container2{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -170,7 +170,7 @@ a{
 
     </style>
     
-    <div class="container">
+    <div class="container2">
         <div class="menu-list">
             <h2>{{ $store->name }} Menus</h2>
             @if (count($menus) > 0)
@@ -184,7 +184,7 @@ a{
             @endif
         </div>
     
-    <div class="container links">
+    <div class="container2 links">
         <a href="{{ Route('reviews',['id'=>$store->id])}}">Add Review</a>
         <a href="{{ Route('store.orders.create',['id'=>$store->id])}}">Order</a>
     </div>
@@ -197,10 +197,10 @@ a{
             <span>Comments</span>
             <h4>Clients Says</h4>
         </div>
-        <!--testimonials-box-container------>
+        <!--testimonials-box-container2------>
         @foreach ($rev as $review)
             
-        <div class="testimonial-box-container">
+        <div class="testimonial-box-container2">
             <div class="testimonial-box">
                 <div class="box-top">
                     <div class="profile">
@@ -211,7 +211,7 @@ a{
                         
                         <div class="name-user">
                             <strong>{{ $review->user->name }}</strong>
-                            <span>{{ $review->created_at->diffForHumans() }}</span>
+                           
                         </div>
                     </div>
 
@@ -242,7 +242,7 @@ a{
         </div>
     </div>
 
-    <div class="container links">
+    <div class="container2 links">
         <a href="{{ Route('reviews',['id'=>$store->id])}}">Add Review</a>
         <a href="{{ Route('store.orders.create',['id'=>$store->id])}}">Order</a>
     </div>

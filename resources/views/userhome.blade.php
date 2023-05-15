@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
- 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/storeslist.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="{{ asset('css/userhome.css') }}">
 
     <section class="showcase-area" id="showcase">
@@ -41,8 +42,11 @@
         </div>
       </div>
     </section>
+
+
+
     <section id="food">
-      <h2>Types of food</h2>
+      <h2>Cuisines</h2>
       <div class="food-container container">
       @foreach($cuisines as $index => $cuisine)
     @if($index < 3)
@@ -59,169 +63,96 @@
         @break
     @endif
 @endforeach
-
-
       </div>
       <div style="display:flex; align-items:center; justify-content:center; padding-top:20px">
       <a href="" class="btn btn-primary" target="_blank">view more</a>
       </div>
     </section>
     
-    <section id="food-menu">
-      <h2 class="food-menu-heading">Food Menu</h2>
-      <div class="food-menu-container container">
-        <div class="food-menu-item">
-          <div class="food-img">
-            <img src="https://i.postimg.cc/wTLMsvSQ/food-menu1.jpg" alt="" />
-          </div>
-          <div class="food-description">
-            <h2 class="food-titile">Food Menu Item 1</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-              quae.
-            </p>
-            <p class="food-price">Price: &#8377; 250</p>
+    <section id="food">
 
+<h2>Our Stores</h2>
+<div id="app" class="container2">
 
-          </div>
-        </div>
-
-        <div class="food-menu-item">
-          <div class="food-img">
-            <img
-              src="https://i.postimg.cc/sgzXPzzd/food-menu2.jpg"
-              alt="error"
-            />
-          </div>
-          <div class="food-description">
-            <h2 class="food-titile">Food Menu Item 2</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-              quae.
-            </p>
-            <p class="food-price">Price: &#8377; 250</p>
-          </div>
-        </div>
-        <div class="food-menu-item">
-          <div class="food-img">
-            <img src="https://i.postimg.cc/8zbCtYkF/food-menu3.jpg" alt="" />
-          </div>
-          <div class="food-description">
-            <h2 class="food-titile">Food Menu Item 3</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-              quae.
-            </p>
-            <p class="food-price">Price: &#8377; 250</p>
-          </div>
-        </div>
-        <div class="food-menu-item">
-          <div class="food-img">
-            <img src="https://i.postimg.cc/Yq98p5Z7/food-menu4.jpg" alt="" />
-          </div>
-          <div class="food-description">
-            <h2 class="food-titile">Food Menu Item 4</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-              quae.
-            </p>
-            <p class="food-price">Price: &#8377; 250</p>
-          </div>
-        </div>
-        <div class="food-menu-item">
-          <div class="food-img">
-            <img src="https://i.postimg.cc/KYnDqxkP/food-menu5.jpg" alt="" />
-          </div>
-          <div class="food-description">
-            <h2 class="food-titile">Food Menu Item 5</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-              quae.
-            </p>
-            <p class="food-price">Price: &#8377; 250</p>
-          </div>
-        </div>
-        <div class="food-menu-item">
-          <div class="food-img">
-            <img src="https://i.postimg.cc/Jnxc8xQt/food-menu6.jpg" alt="" />
-          </div>
-          <div class="food-description">
-            <h2 class="food-titile">Food Menu Item 6</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-              quae.
-            </p>
-            <p class="food-price">Price: &#8377; 250</p>
-          </div>
-        </div>
+  @foreach ($stores as $index => $store)
+  @if($index < 4)
+  <a href="{{ route('stores.show_menu', $store->id) }}">           
+  <card data-image="{{ $store->image }}">
+      <h1 slot="header">{{ $store->name }}</h1>
+      <p slot="content">{{ $store->description }}</p>
+    </card>
+</a>
+@else
+        @break
+    @endif
+  @endforeach
+</div>
+<div style="display:flex; align-items:center; justify-content:center; padding-top:20px">
+      <a href="{{route('stores.index')}}" class="btn btn-primary" target="_blank">view more</a>
       </div>
-    </section>
+  </section>
+
+  <section id="food-menu">
+  <h2 class="food-menu-heading">Featured Delights</h2>
+  <div style="display:flex; align-items:center; justify-content:center; padding-top:20px">
+      <a href="{{route('stores.showProducts')}}" class="btn btn-primary" target="_blank">view all</a>
+      </div>
+  <div class="food-menu-container container">
+    @foreach ($items as $item)
+    
+    <div class="food-menu-item">
+      <div class="food-img">
+        <img src="{{ $item->image }}" alt="{{ $item->name }}" />
+      </div>
+      <div class="food-description">
+        <h2 class="food-titile">{{ $item->name }}</h2>
+        <p>
+        {{ Str::limit($item->description, 100) }}
+        </p>
+        <p class="food-price">Price: $ {{ $item->price }}</p>
+      </div>
+    </div>
+    @endforeach
+  </div>
+</section>
+
     <section id="testimonials">
       <h2 class="testimonial-title">What Our Customers Say</h2>
       <div class="testimonial-container container">
-        <div class="testimonial-box">
-          <div class="customer-detail">
-            <div class="customer-photo">
-              <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />
-              <p class="customer-name">Ross Lee</p>
-            </div>
-          </div>
-          <div class="star-rating">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-          </div>
-          <p class="testimonial-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
-            voluptas cupiditate aspernatur odit doloribus non.
-          </p>
-         
+      @foreach($reviews as $index => $review)
+  @if($index < 3)
+    <div class="testimonial-box">
+      <div class="customer-detail">
+        <div class="customer-photo">
+          <img src="https://i.postimg.cc/5Nrw360Y/male-photo1.jpg" alt="" />
+          <p class="customer-name">{{$review->user->name}}</p>
         </div>
-        <div class="testimonial-box">
-          <div class="customer-detail">
-            <div class="customer-photo">
-              <img
-                src="https://i.postimg.cc/sxd2xCD2/female-photo1.jpg"
-                alt=""
-              />
-              <p class="customer-name">Amelia Watson</p>
-            </div>
-          </div>
-          <div class="star-rating">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-          </div>
-          <p class="testimonial-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
-            voluptas cupiditate aspernatur odit doloribus non.
-          </p>
-         
-        </div>
-        <div class="testimonial-box">
-          <div class="customer-detail">
-            <div class="customer-photo">
-              <img src="https://i.postimg.cc/fy90qvkV/male-photo3.jpg" alt="" />
-              <p class="customer-name">Ben Roy</p>
-            </div>
-          </div>
-          <div class="star-rating">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-          </div>
-          <p class="testimonial-text">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit
-            voluptas cupiditate aspernatur odit doloribus non.
-          </p>
-         
-        </div>
+      </div>
+      <div class="star-rating">
+        @php
+        $rating = $review->rating;
+        @endphp
+
+        @for($i = 1; $i <= 5; $i++)
+            @if($i <= $rating)
+                <span class="fa fa-star checked"></span>
+            @else
+                <span class="fa fa-star"></span>
+            @endif
+        @endfor
+    </div>
+    <p class="testimonial-text">
+  {{ Str::limit($review->description, 100) }}
+</p>
+
+
+    </div>
+  @else
+    @break
+  @endif
+@endforeach
+
+
       </div>
     </section>
     <section id="contact">
@@ -278,7 +209,8 @@
         } // End if
       });
     });
+    
   </script>
-
+<script src="{{ asset('js/storeslist.js') }}"></script>
 
 @endsection

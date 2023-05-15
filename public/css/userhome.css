@@ -197,7 +197,7 @@ body {
 /* ..........////Food category///........... */
 
 #food {
-  padding: 5rem 0 5rem 0;
+  padding: 0rem 0 5rem 0;
 }
 
 #food h2 {
@@ -355,12 +355,14 @@ body {
 .testimonial-box .testimonial-text {
   margin: 1rem 0;
   color: #444;
+  font-size: 15px;
 }
 
 .testimonial-box {
   text-align: center;
   padding: 1rem;
 }
+
 
 .customer-photo img {
   display: block;

@@ -52,7 +52,8 @@ a
 
 .product-tumb img {
     width: 280px;
-    height: auto;
+    height: 206px;
+    object-fit: cover;
 }
 
 .product-details {

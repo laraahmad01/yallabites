@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/storeslist.css') }}">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-<div id="app" class="container">
+<div id="app" class="container2">
 
   @foreach ($stores as $store)
   <a href="{{ route('stores.show_menu', $store->id) }}">           
