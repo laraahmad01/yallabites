@@ -126,8 +126,21 @@ public function updateStore(Request $request, Store $store)
     return redirect()->route('roles.index2')->with('success', 'Store updated successfully.');
 }
 
-public function destroyStore(Store $store)
+public function destroyStore(Store $store): RedirectResponse
 {
+    $store->reviews()->delete();
+    
+    $store->menus()->each(function ($menu) {
+        // Delete items and their cart items
+        $menu->items()->each(function ($item) {
+            $item->cartItems()->delete();
+            $item->delete();
+        });
+
+        $menu->delete();
+    });
+    $store->orders()->delete();
+    
     $store->delete();
 
     return redirect()->route('roles.index2')->with('success', 'Store deleted successfully.');

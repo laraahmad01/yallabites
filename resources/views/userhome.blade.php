@@ -136,7 +136,7 @@
         @for($i = 1; $i <= 5; $i++)
             @if($i <= $rating)
                 <span class="fa fa-star checked"></span>
-            @else
+            @else 
                 <span class="fa fa-star"></span>
             @endif
         @endfor
@@ -164,7 +164,7 @@
         <div class="form-container">
           <h2>Join Us</h2>
           <p style="padding-top:5px">Are you a cook, resturant, or store? Join our YallaBites family now!</p>
-          <a href="#" class="btn btn-primary">Become a Store</a>
+          <a href="{{ route('restaurant.create') }}" class="btn btn-primary">Become a Store</a>
            <br><br><br>
           <h2>Contact Us</h2>
           <input type="text" placeholder="Your Name" />

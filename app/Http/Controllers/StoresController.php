@@ -7,7 +7,7 @@ use App\Models\Menu;
 use App\Models\Store;
 use App\Models\Location;
 use App\Models\Cuisine;
-
+use App\Models\Order;
 
 use Illuminate\Http\Request;
 
