@@ -10,13 +10,44 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="public/css/StoreForm.css">
 
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+    body{
+        font-family: "Poppins", sans-serif;
+    }
+    .nav {
+       
+        padding: 10px;
+    }
 
+    .menu {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .items {
+        margin-right: 50px;
+        font-size:17px;
+        text-decoration: none;
+        
+    }
+
+    .link {
+        text-decoration: none;
+        color:#117964;
+    }
+    .link:hover{
+        color:#16a083;
+    }
+</style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
   
@@ -39,18 +70,18 @@
 
                     </ul>
                     <nav class="nav">
-                <ui class="menu">
-                    <li class="items"><a href="{{ route('home')}}" class="link">Home</a></li>
-                    <li class="items"><a href="#" class="">Profile </a></li>
-                    <li class="items"><a href="#" class="{{route('cart.show')}}">Cart</a></li>
-                    @auth
-    @if (auth()->user()->isAdmin())
-        <li class="items"><a href="#" class="link">Dashboard</a></li>
-    @endif
-@endauth
+    <ul class="menu">
+        <li class="items"><a href="{{ route('userhome') }}" class="link"><i class="fas fa-home"></i></a></li>
+        <li class="items"><a href="{{ route('home') }}" class="link"><i class="fas fa-user"></i> </a></li>
+        <li class="items"><a href="{{ route('cart.show') }}" class="link"><i class="fas fa-shopping-cart"></i> </a></li>
+        @auth
+            @if (auth()->user()->hasRole('admin'))
+                <li class="items"><a href="{{ route('roles.index') }}" class="link"><i class="fas fa-tachometer-alt"></i> </a></li>
+            @endif
+        @endauth
+    </ul>
+</nav>
 
-                </ui>
-            </nav>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

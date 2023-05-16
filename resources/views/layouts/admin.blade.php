@@ -87,7 +87,7 @@
 </svg>
 <header class="page-header">
   <nav>
-    <a href="#0" aria-label="forecastr logo" class="logo">
+    <a href="{{route('userhome')}}" aria-label="forecastr logo" class="logo">
       <h2>YallaBites</h2>
     </a>
     <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
