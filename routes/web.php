@@ -12,6 +12,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -113,10 +115,21 @@ Route::get('/search/items', [SearchController::class ,'searchItems'])->name('sea
 Route::get('/products', [StoresController::class, 'showProducts'])->name('stores.showProducts');
     //Route::get('/search', [StoresController::class, 'search'])->name('store.search');
     //Route::get('/store/{id}', 'StoresController@show')->name('store.show');
-    Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
-    Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
+  //  Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
+    //Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
     Route::get('/track-order/{id}', [StoreOrderController::class,'track'])->name('orders.track');
 
     Route::get('/userhome', [UserHomeController::class, 'showHome'])->name('userhomecuisine');
 
 
+    
+    // Google Login
+    Route::get('/login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+    Route::get('/login/google/callback', [LoginController::class, 'handleGoogleCallback']);
+    
+    // Other routes in your application...
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware('admin');
+    

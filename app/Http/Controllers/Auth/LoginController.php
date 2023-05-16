@@ -60,18 +60,34 @@ class LoginController extends Controller
     }
 
 
-public function redirectToProvider($provider)
-{
-    return Socialite::driver($provider)->redirect();
-}
 
-public function handleProviderCallback($provider)
-{
-    $user = Socialite::driver($provider)->user();
-
-    // Do something with the user data, such as creating a new account or logging them in
-
-    return redirect('/home');
-}
+    
+    // ...
+    
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    
+    public function handleGoogleCallback(Request $request)
+    {
+        $user = Socialite::driver('google')->user();
+    
+        // You can customize the logic to handle the user's data
+        // For example, you can check if the user exists and log them in, or create a new user account
+    
+        // Here's an example of logging in the user if they exist in your system
+        $existingUser = User::where('email', $user->getEmail())->first();
+    
+        if ($existingUser) {
+            Auth::login($existingUser);
+            return redirect()->intended('/');
+        }
+    
+        // If the user doesn't exist, you can redirect them to a registration page or create a new user account
+    
+        return redirect('/register')->with('googleUser', $user);
+    }
+    
 
 }
