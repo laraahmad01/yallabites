@@ -38,7 +38,19 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
+                    <nav class="nav">
+                <ui class="menu">
+                    <li class="items"><a href="{{ route('home')}}" class="link">Home</a></li>
+                    <li class="items"><a href="#" class="">Profile </a></li>
+                    <li class="items"><a href="#" class="{{route('cart.show')}}">Cart</a></li>
+                    @auth
+    @if (auth()->user()->isAdmin())
+        <li class="items"><a href="#" class="link">Dashboard</a></li>
+    @endif
+@endauth
 
+                </ui>
+            </nav>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

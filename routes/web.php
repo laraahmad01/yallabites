@@ -12,6 +12,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
@@ -109,40 +111,10 @@ Route::get('/search/items', [SearchController::class ,'searchItems'])->name('sea
 Route::get('/products', [StoresController::class, 'showProducts'])->name('stores.showProducts');
     //Route::get('/search', [StoresController::class, 'search'])->name('store.search');
     //Route::get('/store/{id}', 'StoresController@show')->name('store.show');
-    Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
-    Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
+  //  Route::get('/login/{provider}', [LoginController::class,'redirectToProvider'])->name('social.login');
+    //Route::get('/login/{provider}/callback', [LoginController::class,'handleProviderCallback']);
     Route::get('/track-order/{id}', [StoreOrderController::class,'track'])->name('orders.track');
 
     Route::get('/userhome', [UserHomeController::class, 'showHome'])->name('userhomecuisine');
  
 
-
-
-Route::get('/addmenu', function () {
-    return view('addmenu');
-})->name('addmenu');
-
-Route::post('/Createstores', [StoresController::class, 'storeNewStore'])->name('submit.store');
-Route::get('/login', [LoginController::class,'redirectToProvider'])->name('social.login');
-Route::get('/login', [LoginController::class,'showLoginForm'])->name('login');
-
-Route::post('/Savemenus', [MenuController::class, 'storeMenu'])->name('menu.store');
-Route::get('/StoreProfile', function () {
-    return view('StoreProfile');
-})->name('store.profile');
-
-
-Route::post('/additems', [ItemController::class,'store'])->name('additems');
-// Edit item route
-
-Route::get('/view-items', function () {
-    $items = Item::all(); // Retrieve the items from the database
-    $categories= Category::all();
-    return view('ViewStoreItems', compact('items', 'categories'));
-})->name('view.items');
-
-Route::get('/track-order', [OrderController::class, 'trackOrder'])->name('trackOrder');
-
-
-Route::get('/items/{id}', [ItemController::class, 'destroy'])->name('storedeleteitem');
-Route::get('/view-items/{id}/edit', [ItemController::class,'edit'])->name('itemedit');
