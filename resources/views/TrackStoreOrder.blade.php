@@ -1,6 +1,5 @@
 @extends('StoreProfile')
-
-
+@section('content')
 
 <div class="col-lg-6 grid-margin stretch-card">
     
@@ -46,3 +45,4 @@
         </div>
     </div>
 </div>
+@endsection

@@ -32,9 +32,6 @@
 .card .status {
   color: #28a745;
 }
-
-
-
     </style>
      <div class="card">
         <div class="card-body">

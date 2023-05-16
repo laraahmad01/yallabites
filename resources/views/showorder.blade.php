@@ -4,7 +4,7 @@
 
 <style>
   .my-orders-container {
-    margin: 30px auto;
+    margin: -25px auto;
     padding: 20px;
     background-color: #f7f7f7;
     border-radius: 10px;
@@ -115,3 +115,4 @@
   @endif
 </div>
 
+@endsection
