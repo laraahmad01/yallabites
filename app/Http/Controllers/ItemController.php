@@ -32,17 +32,62 @@ class ItemController extends Controller
     $imageName = Str::random(10) . '.' . $request->file('image')->getClientOriginalExtension();
     $imagePath = $request->file('image')->storeAs('public/menu_images', $imageName);
 
-    $item = new Item();
-    $item->menu_id = $menu->id; // Assign the retrieved menu ID
+    $items = new Item();
+    $items->menu_id = $menu->id; // Assign the retrieved menu ID
 
-    $item->category_id = $request->category;
-    $item->name = $request->name;
-    $item->price = $request->price;
-    $item->calories = $request->calories;
-    $item->description = $request->description;
-    $item->image = $imagePath;
-    $item->save();
+    $items->category_id = $request->category;
+    $items->name = $request->name;
+    $items->price = $request->price;
+    $items->calories = $request->calories;
+    $items->description = $request->description;
+    $items->image = $imagePath;
+    $items->save();
     // Redirect back or to a success page
-    return view('StoreProfile', compact('category'));
+    return view('StoreProfile', compact('category', 'items'));
 }
+public function edit($id)
+    {
+        // Find the item by its ID
+        $item = Item::findOrFail($id);
+
+        // Return the view for editing the item
+        return view('store.profile', compact('item'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'calories' => 'required|numeric',
+            'description' => 'required',
+        ]);
+
+        // Find the item by its ID
+        $item = Item::findOrFail($id);
+
+        // Update the item with the new data
+        $item->name = $request->name;
+        $item->price = $request->price;
+        $item->calories = $request->calories;
+        $item->description = $request->description;
+        // Save the updated item
+        $item->save();
+
+        // Redirect back to the profile page or a success page
+        return redirect()->route('store.profile');
+    }
+
+    public function destroy($id)
+    {
+        // Find the item by its ID
+        $items = Item::findOrFail($id);
+
+        // Delete the item
+        $items->delete();
+
+        // Redirect back to the profile page or a success page
+        return redirect()->route('store.profile');
+    }
 }

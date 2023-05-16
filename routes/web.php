@@ -140,3 +140,8 @@ Route::get('/StoreProfile', function () {
 
 
 Route::post('/additems', [ItemController::class,'store'])->name('additems');
+// Edit item route
+Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('store.edititem');
+
+// Delete item route
+Route::DELETE('/items/{id}', [ItemController::class, 'destroy'])->name('store.deleteitem');
