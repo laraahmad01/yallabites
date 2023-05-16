@@ -32,7 +32,9 @@
                                     @method('DELETE')
                                     <button type="submit">Delete</button>
                                 </form>
-                                
+                                <form action="{{ route('itemedit', ['id' => $item->id]) }}" method="GET">
+                                    <button type="submit">Edit</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
