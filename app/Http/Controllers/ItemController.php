@@ -49,10 +49,10 @@ class ItemController extends Controller
 public function edit($id)
     {
         // Find the item by its ID
-        $item = Item::findOrFail($id);
+        $item = Item::find($id);
 
         // Return the view for editing the item
-        return view('store.profile', compact('item'));
+        return view('ItemEdit', compact('item'));
     }
 
     public function update(Request $request, $id)

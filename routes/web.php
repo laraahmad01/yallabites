@@ -143,6 +143,6 @@ Route::get('/view-items', function () {
 
 Route::get('/track-order', [OrderController::class, 'trackOrder'])->name('trackOrder');
 
-Route::get('/orders/{id}/edit', [OrderController::class,'edit'])->name('editorder');
 
 Route::get('/items/{id}', [ItemController::class, 'destroy'])->name('storedeleteitem');
+Route::get('/view-items/{id}/edit', [ItemController::class,'edit'])->name('itemedit');
