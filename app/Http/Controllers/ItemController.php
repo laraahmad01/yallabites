@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Item;
 use App\Models\Menu;
+use App\Models\Order;
 use App\Models\Category;
 class ItemController extends Controller
 {
@@ -24,26 +25,26 @@ class ItemController extends Controller
     $user = Auth::user();
 
     $category = Category::all();
-    $category = Category::all();
     $menu = Menu::where('id', $user->id)->first(); // Retrieve the menu associated with the authenticated user
 
-    
     // Save the image file
     $imageName = Str::random(10) . '.' . $request->file('image')->getClientOriginalExtension();
     $imagePath = $request->file('image')->storeAs('public/menu_images', $imageName);
 
-    $items = new Item();
-    $items->menu_id = $menu->id; // Assign the retrieved menu ID
+    $item = new Item();
+    $item->menu_id = $menu->id; // Assign the retrieved menu ID
+    $item->category_id = $request->category;
+    $item->name = $request->name;
+    $item->price = $request->price;
+    $item->calories = $request->calories;
+    $item->description = $request->description;
+    $item->image = $imagePath;
+    $item->save();
 
-    $items->category_id = $request->category;
-    $items->name = $request->name;
-    $items->price = $request->price;
-    $items->calories = $request->calories;
-    $items->description = $request->description;
-    $items->image = $imagePath;
-    $items->save();
+    $orders = Order::where('user_id', $user->id)->get();
+
     // Redirect back or to a success page
-    return view('StoreProfile', compact('category', 'items'));
+    return view('StoreProfile', compact('category', 'item', 'orders'));
 }
 public function edit($id)
     {

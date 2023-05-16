@@ -14,5 +14,6 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
-    use HasFactory;    
+    use HasFactory;   
+
 }
