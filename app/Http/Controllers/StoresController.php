@@ -61,7 +61,7 @@ public function storeNewStore(Request $request)
     $store = new Store;
     $store->name = $request->name;
     $store->location_id = $location->id;
-    $store->image = $image;
+    
     $store->cuisine_id = $cuisine->id;
     $store->description = $request->description;
     $store->is_accepted = false;

@@ -27,8 +27,12 @@
                             <td>{{ $item->calories }}</td>
                             <td>{{ $item->description }}</td>
                             <td>
-                                <a href="">Edit</a>
-                                <a href="">Delete</a>
+                                <form action="{{ route('storedeleteitem', ['id' => $item->id]) }}" >
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete</button>
+                                </form>
+                                
                             </td>
                         </tr>
                         @endforeach
