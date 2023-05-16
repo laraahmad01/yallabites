@@ -25,23 +25,10 @@ class StoresController extends Controller
 
 public function storeNewStore(Request $request)
 {
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'street' => 'required|string|max:255',
-        'city' => 'required|string|max:255',
-        'state' => 'required|string|max:255',
-        'postal_code' => 'required|string|max:255',
-        'country' => 'required|string|max:255',
-        'code' => 'required|string|max:255',
-        'phone' => 'required|string|max:255',
-        'your_email' => 'required|string|email|max:255',
-        'address' => 'required|string|max:255', // Add this line
-        'cuisine' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
-    ]);
-
+    
+    $cuisines = Cuisine::all();
     // Save location
-    $location = new Location;
+    $location = new Location();
     $location->street = $request->street;
     $location->city = $request->city;
     $location->state = $request->state;
@@ -49,37 +36,36 @@ public function storeNewStore(Request $request)
     $location->country = $request->country;
     $location->code = $request->code;
     $location->phone = $request->phone;
+
     $location->your_email = $request->your_email;
     $location->save();
 
-    // Save cuisine
-    $cuisine = new Cuisine;
-    $cuisine->name = $request->cuisine;
-    $cuisine->save();
-
     // Save store
-    $store = new Store;
+    $store = new Store();
     $store->name = $request->name;
     $store->location_id = $location->id;
-    $store->image = $image;
-    $store->cuisine_id = $cuisine->id;
+    $store->cuisine_id = $request->cuisine_id;
+
+    $filename = time() . '.' . $request->file('myfile')->getClientOriginalExtension();
+    $request->file('myfile')->storeAs('public/myimages', $filename);
+    error_log('name of image saved: ' . $filename);
+    $tosave = 'storage/myimages/' . $filename;
+    $store->image = $tosave;
+
     $store->description = $request->description;
     $store->is_accepted = false;
+ 
 
     if (Auth::check()) {
         $store->user_id = Auth::user()->id;
         $store->save();
-        $username= Auth::user()->name;
+        $username = Auth::user()->name;
         return redirect()->route('addmenu');
-
-    } else { 
-        
-
+    } else {
         return redirect()->guest(route('login'))->intended(route('submit.store'))->withInput($request->input());
     }
-
-    
 }
+
 
 public function store(){
     return view("store_waiting");

@@ -12,6 +12,9 @@ class CartController extends Controller
 {
     public function addItem(Request $request)
     {
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
         $userId = Auth::id();
         $itemId = $request->input('item_id');
         $quantity = $request->input('quantity');
@@ -23,7 +26,7 @@ class CartController extends Controller
         if (!$cart->exists) {
             $cart->save();
         }
-
+        
         // Check if the item already exists in the cart
         $existingCartItem = CartItem::where('cart_id', $cart->id)
             ->where('item_id', $itemId)

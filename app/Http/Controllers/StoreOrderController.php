@@ -26,6 +26,7 @@ class StoreOrderController extends Controller
         $obj->billing_address = $request->input('billing_address');
         $obj->payment_method = $request->input('payment_method');
         $obj->status = 'pending'; // Set the status to 'pending'
+        $obj->quantity = '1'; // Set the status to 'pending'
 
     
         // If the payment method is online, you could also process the payment here

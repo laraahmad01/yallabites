@@ -6,9 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
-        public function up(): void
-        {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
@@ -19,9 +21,8 @@ return new class extends Migration
             $table->string('shipping_address');
             $table->string('billing_address');
             $table->timestamps();
-            });
-        }
-    
+        });
+    }
 
     /**
      * Reverse the migrations.
@@ -31,6 +32,3 @@ return new class extends Migration
         Schema::dropIfExists('orders');
     }
 };
-
-
-

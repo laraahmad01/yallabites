@@ -21,8 +21,12 @@
 				<!-- image -->
 					<div class="form-group">
 						<div class="form-row form-row-1">
-                            <label  id="first_name" class="input-text" for="image">Image for the restaurant logo:</label>
-                            <input  type="file" id="image" name="image" accept="image/*" required>
+						<label class="form-label" for="inputFile">Image:</label>
+<input
+            type="file"
+            name="myfile"
+            id="inputFile"
+            class="form-control @error('file') is-invalid @enderror">
 						</div>
 				<!-- description -->
 					</div>
@@ -32,15 +36,17 @@
 					</div>
 
 				<!-- cuisine -->
-					<div class="form-row">
-						<label for="cuisine">Type of cuisine:</label>
-        <input type="text" id="cuisine" name="cuisine" >
-					</div>
-					<div class="form-group">
-						
-						
-					</div>
-				</div>
+				<div class="form-row">
+    <label for="cuisine">Type of cuisine:</label>
+    <select id="cuisine" name="cuisine_id">
+    <option value="">Select cuisine</option>
+    @foreach($cuisines as $cuisine)
+        <option value="{{ $cuisine->id }}">{{ $cuisine->id }}</option>
+    @endforeach
+</select>
+
+</div>
+<div class="form-group">
 
 				<!-- street -->
 				<div class="form-right">
