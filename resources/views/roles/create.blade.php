@@ -1,15 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1>Create Role</h1>
+<link rel="stylesheet" href="{{ asset('css/createrole.css') }}">
 
-<form action="{{ route('roles.store') }}" method="POST">
+<div class="role-create-container">
+  <h1 class="role-create-heading">Create Role</h1>
+
+  <form class="role-create-form" action="{{ route('roles.store') }}" method="POST">
     @csrf
-    <div>
-        <label for="name">Role Name:</label>
-        <input type="text" name="name" id="name" required>
+    <div class="role-create-input-group">
+      <label class="role-create-label" for="name">Role Name:</label>
+      <input class="role-create-input" type="text" name="name" id="name" required>
     </div>
-    <button type="submit">Create</button>
-</form>
-
+    <button class="role-create-button" type="submit">Create</button>
+  </form>
+</div>
 @endsection

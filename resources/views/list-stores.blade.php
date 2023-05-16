@@ -1,84 +1,50 @@
 @extends('layouts.admin')
 
 @section('content')
-<style>
-    .store-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+<link rel="stylesheet" href="{{ asset('css/tables.css') }}">
 
-.store-table th,
-.store-table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-.store-action-btn {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.store-action-form {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-.store-action-btn:hover {
-    background-color: #0056b3;
-}
-
-.btn-primary {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-</style>
-    <h2>List of Stores</h2>
-
+<div class="fontclass">
+    <div class="table">
+  <div class="table__body">
+    <div class="table__row table__heading">
+      <div class="table__cell">Store ID</div>
+      <div class="table__cell">Store Name</div>
+      <div class="table__cell">Street</div>
+      <div class="table__cell">City</div>
+      <div class="table__cell">State</div>
+      <div class="table__cell">Actions</div>
+    </div>
     @if (count($stores) > 0)
-        <table class="store-table">
-            <thead>
-                <tr>
-                    <th>Store ID</th>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($stores as $store)
-                    <tr>
-                        <td>{{ $store->id }}</td>
-                        <td>{{ $store->name }}</td>
-                        <td>{{ $store->location }}</td>
-                        <td>
-                            <!-- Add actions like edit and delete for each store -->
-                            <!-- Example: -->
-                            <a href="{{ route('stores.edit', $store->id) }}" class="store-action-btn">Edit</a>
-                            <form action="{{ route('stores.destroy', $store->id) }}" method="POST" class="store-action-form">
+    @foreach ($stores as $store)
+    <div class="table__row">
+      <div class="table__cell">
+        <img class="table__crypto-image" alt="" src="https://www.cryptoder.com/assets/img/bitcoin-logo.png" height="32">
+        <h3 class="table__crypto-name">{{ $store->id }}
+          <h3>
+      </div>
+      <div class="table__cell">{{ $store->name }}</div>
+      <div class="table__cell">{{ $store->location->street }}</div>
+      <div class="table__cell">{{ $store->location->city }}</div>
+      <div class="table__cell">{{ $store->location->state }}</div>
+      <div class="table__cell">
+        <div class="buttons">
+            <button class="button button--outline buttons__venta">
+        <a href="{{ route('stores.edit', $store->id) }}">Edit</a>
+</button>
+          <form action="{{ route('stores.destroy', $store->id) }}" method="POST" class="store-action-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="store-action-btn">Delete</button>
+                                <button class="button button--primary buttons__comprar">Delete</button>
                             </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @else
+
+        </div>
+      </div>
+    </div>
+   @endforeach
+   @else
+ <a href="{{ route('stores.create') }}" class="btn btn-primary">Add Store</a>
         <p>No stores found.</p>
     @endif
-    <a href="{{ route('stores.create') }}" class="btn btn-primary">Add Store</a>
+  </div>
+</div>
 @endsection

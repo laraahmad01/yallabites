@@ -24,17 +24,17 @@ class Store extends Model
     
     public function menus()
     {
-        return $this->hasMany(Menu::class);
+        return $this->hasMany(Menu::class)->onDelete('cascade');;
     }
     
     public function orders()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class)->onDelete('cascade');;
     }
     
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)->onDelete('cascade');;
     }
     protected $fillable = [
         'user_id',

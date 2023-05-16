@@ -55,7 +55,7 @@
                 <img src="{{$cuisine->image}}" alt="{{ $cuisine->name }}" />
                 <div class="img-content">
                     <h3>{{ $cuisine->name }}</h3>
-                    <a href="{{ $cuisine->learn_more_link }}" class="btn btn-primary" target="_blank">Learn More</a>
+                    <a href="{{ $cuisine->learn_more_link }}" class="btn btn-primary" >Learn More</a>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
 @endforeach
       </div>
       <div style="display:flex; align-items:center; justify-content:center; padding-top:20px">
-      <a href="" class="btn btn-primary" target="_blank">view more</a>
+      <a href="" class="btn btn-primary" >view more</a>
       </div>
     </section>
     
@@ -88,14 +88,14 @@
   @endforeach
 </div>
 <div style="display:flex; align-items:center; justify-content:center; padding-top:20px">
-      <a href="{{route('stores.index')}}" class="btn btn-primary" target="_blank">view more</a>
+      <a href="{{route('stores.index')}}" class="btn btn-primary" >view more</a>
       </div>
   </section>
 
   <section id="food-menu">
   <h2 class="food-menu-heading">Featured Delights</h2>
   <div style="display:flex; align-items:center; justify-content:center; padding-top:20px">
-      <a href="{{route('stores.showProducts')}}" class="btn btn-primary" target="_blank">view all</a>
+      <a href="{{route('stores.showProducts')}}" class="btn btn-primary" >view all</a>
       </div>
   <div class="food-menu-container container">
     @foreach ($items as $item)
@@ -136,7 +136,7 @@
         @for($i = 1; $i <= 5; $i++)
             @if($i <= $rating)
                 <span class="fa fa-star checked"></span>
-            @else
+            @else 
                 <span class="fa fa-star"></span>
             @endif
         @endfor
@@ -164,7 +164,7 @@
         <div class="form-container">
           <h2>Join Us</h2>
           <p style="padding-top:5px">Are you a cook, resturant, or store? Join our YallaBites family now!</p>
-          <a href="#" class="btn btn-primary">Become a Store</a>
+          <a href="{{ route('restaurant.create') }}" class="btn btn-primary">Become a Store</a>
            <br><br><br>
           <h2>Contact Us</h2>
           <input type="text" placeholder="Your Name" />

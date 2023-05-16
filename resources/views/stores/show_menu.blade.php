@@ -41,14 +41,14 @@
     display: inline-block;
     margin-right: 1rem;
     padding: 0.5rem 1rem;
-    color: #fff;
-    background-color: #007bff;
+    color: red;
+    background-color: transparent;
     border-radius: 0.25rem;
     text-decoration: none;
 }
 
 .links a:hover {
-    background-color: #0069d9;
+    border-bottom: 1px solid black;
 }
 
 *{
@@ -158,6 +158,7 @@ a{
     
   display: inline-block;
   margin-top: 3px;
+  margin-bottom: 10px;
   background-color: transparent;
   border:none;
   border-bottom: 2px solid red;
@@ -165,11 +166,110 @@ a{
   cursor: pointer;
 }
 
+.container2 {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.menu-list2 {
+  padding: 40px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu-list2 h2 {
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.menu-list2 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu-list2 li {
+  width: calc(33.33% - 20px);
+  margin: 10px;
+}
+
+.menu-list2 a {
+  text-decoration: none;
+}
+
+.menu-card2 {
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  max-width: auto;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-image2 {
+  max-width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.menu-info2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: black;
+}
+
+.menu-name2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.menu-description2 {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+
 
     
 
     </style>
     
+    <div class="container2">
+  <div class="menu-list2">
+    <h2>{{ $store->name }} Menus</h2>
+    @if (count($menus) > 0)
+      <ul>
+        @foreach ($menus as $menu)
+          <li>
+            <a href="{{ route('stores.menu', ['storeId' => $store->id, 'menuId' => $menu->id]) }}">
+              <div class="menu-card2">
+                <img src="{{ $menu->image }}" alt="{{ $menu->name }}" class="menu-image2">
+                <div class="menu-info2">
+                  <h3 class="menu-name2">{{ $menu->name }}</h3>
+                </div>
+              </div>
+            </a>
+          </li>
+        @endforeach
+      </ul>
+    @else
+      <p>No menus found for this store.</p>
+    @endif
+  </div>
+</div>
     <div class="container2">
         <div class="menu-list">
             <h2>{{ $store->name }} Menus</h2>
@@ -189,6 +289,9 @@ a{
         <a href="{{ Route('store.orders.create',['id'=>$store->id])}}">Order</a>
     </div>
 
+    
+  
+
 
 
         <section id="testimonials">
@@ -197,7 +300,7 @@ a{
             <span>Comments</span>
             <h4>Clients Says</h4>
         </div>
-        <!--testimonials-box-container2------>
+        <!--testimonials-box-container------>
         @foreach ($rev as $review)
             
         <div class="testimonial-box-container2">
@@ -242,9 +345,8 @@ a{
         </div>
     </div>
 
-    <div class="container2 links">
+    <div class="container links">
         <a href="{{ Route('reviews',['id'=>$store->id])}}">Add Review</a>
-        <a href="{{ Route('store.orders.create',['id'=>$store->id])}}">Order</a>
     </div>
-
+ </div>
 @endsection
