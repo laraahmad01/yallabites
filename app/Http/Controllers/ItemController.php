@@ -47,13 +47,14 @@ class ItemController extends Controller
     return view('StoreProfile', compact('category', 'item', 'orders'));
 }
 public function edit($id)
-    {
-        // Find the item by its ID
-        $item = Item::find($id);
+{
+    // Find the item by its ID
+    $item = Item::find($id);
 
-        // Return the view for editing the item
-        return view('ItemEdit', compact('item'));
-    }
+    // Return the view for editing the item
+    return view('ItemEdit', compact('item'));
+}
+
 
     public function update(Request $request, $id)
     {
