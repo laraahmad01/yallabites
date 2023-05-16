@@ -56,4 +56,9 @@ public function hasRole(string $role): bool
     {
         return $this->hasOne(Cart::class);
     }
+    public function store()
+{
+    return $this->hasOne(Store::class);
+}
+
 }

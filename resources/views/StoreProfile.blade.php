@@ -20,6 +20,44 @@
 <link rel="stylesheet" href="css/vertical-layout-light/style.css">
 <!-- endinject -->
 <link rel="shortcut icon" href="images/favicon.png" />
+<style>
+    table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+</style>
 </head>
 
 <body>
@@ -31,21 +69,8 @@
         <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/YallaBiteLogo.jpg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-          <span class="icon-menu"></span>
-        </button>
-        <ul class="navbar-nav mr-lg-2">
-          <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
-          </li>
-        </ul>
+       
+      
         
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>
@@ -128,6 +153,10 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                   <h3 class="font-weight-bold">Welcome {{Auth::user()->name}}</h3>
+                  <!--
+                  <h3 class="font-weight-bold">Your Store Name is {{Auth::user()->store->name}}</h3>
+                  <h3 class="font-weight-bold">Your Store Description is {{Auth::user()->store->description}}</h3>
+                  -->
                 </div>
               
               </div>
@@ -175,7 +204,6 @@
                                <option value="2">Beverage </option>
                                <option value="3">Appetizer </option>
                                
-
                             </select>
                         </div>
                         <div class="form-group">
@@ -190,13 +218,51 @@
                 </div>
          
           
-          
+               
+             
+              
+              
          
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
        
         <!-- partial -->
       </div>
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Check Your Items </h4>
+            
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Calories</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($items as $item)
+                        <tr>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->price }}</td>
+                            <td>{{ $item->calories }}</td>
+                            <td>{{ $item->description }}</td>
+                            <td>
+                                <a href="{{ route('store.edititem', ['id' => $item->id]) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('store.deleteitem', ['id' => $item->id]) }}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            
+            </div>
+          </div>
+        </div>
       <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Models\Item;
 class MenuController extends Controller
 {
     public function storeMenu(Request $request)
@@ -22,8 +23,7 @@ class MenuController extends Controller
 
         // Save the image file
         $imagePath = $request->file('image')->storeAs('public/menu_images', $imageName);
-    
-        // Create a new menu instance
+        $items = Item::all();        // Create a new menu instance
         $menu = new Menu();
         $menu->name = $request->name;
         $menu->image = $imagePath;
@@ -33,7 +33,6 @@ class MenuController extends Controller
         $menu->store_id = $user->id; // Assign the store_id directly
         $menu->save();
     
-        return redirect()->route('store.profile')->with(['user' => Auth::user()])->compact('category');
-
+        return redirect()->route('store.profile')->with(['user' => Auth::user(), 'category' => $category, 'items' => $items]);
     }
 }
