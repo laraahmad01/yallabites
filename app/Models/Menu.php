@@ -14,7 +14,7 @@ class Menu extends Model
     
     public function items()
     {
-        return $this->hasMany(Item::class)->onDelete('cascade');;
+        return $this->hasMany(Item::class);
     }
     protected $fillable = [
         'store_id',

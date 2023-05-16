@@ -9,7 +9,7 @@ class Cuisine extends Model
 {
     public function stores()
     {
-        return $this->hasMany(Store::class)->onDelete('cascade');;
+        return $this->hasMany(Store::class);
     }
     protected $fillable = [
         'name',
