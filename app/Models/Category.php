@@ -9,10 +9,11 @@ class Category extends Model
 {
     public function items()
     {
-        return $this->hasMany(Item::class)->onDelete('cascade');;
+        return $this->hasMany(Item::class);
     }
     protected $fillable = [
         'name',
     ];
-    use HasFactory;    
+    use HasFactory;   
+
 }

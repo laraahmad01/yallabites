@@ -14,7 +14,9 @@ use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ItemController;
-
+use App\Http\Controllers\OrderController;
+use App\Models\Category;
+use App\Models\Item;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -141,7 +143,14 @@ Route::get('/StoreProfile', function () {
 
 Route::post('/additems', [ItemController::class,'store'])->name('additems');
 // Edit item route
-Route::get('/items/{id}/edit', [ItemController::class, 'edit'])->name('store.edititem');
 
-// Delete item route
-Route::DELETE('/items/{id}', [ItemController::class, 'destroy'])->name('store.deleteitem');
+Route::get('/view-items', function () {
+    $items = Item::all(); // Retrieve the items from the database
+    $categories= Category::all();
+    return view('ViewStoreItems', compact('items', 'categories'));
+})->name('view.items');
+
+Route::get('/track-order', [OrderController::class, 'trackOrder'])->name('trackOrder');
+
+Route::get('/orders/{id}/edit', [OrderController::class,'edit'])->name('editorder');
+

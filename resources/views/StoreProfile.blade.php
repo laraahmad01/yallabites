@@ -57,6 +57,27 @@ th {
 .btn:hover {
   background-color: #555;
 }
+a {
+  box-shadow: inset 0 0 0 0 #54b3d6;
+  color: #54b3d6;
+	padding: 0 .25rem;
+	margin: 0 -.25rem;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+}
+a:hover {
+  color: #fff;
+  box-shadow: inset 200px 0 0 0 #54b3d6;;
+}
+
+/* Presentational styles */
+a {
+	color: #54b3d6;
+  font-family: 'Poppins', sans-serif;
+  font-size: 27px;
+	font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+}
 </style>
 </head>
 
@@ -228,43 +249,14 @@ th {
        
         <!-- partial -->
       </div>
-      <div class="col-lg-6 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Check Your Items </h4>
-            
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Calories</th>
-                            <th>Description</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($items as $item)
-                        <tr>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->price }}</td>
-                            <td>{{ $item->calories }}</td>
-                            <td>{{ $item->description }}</td>
-                            <td>
-                                <a href="{{ route('store.edititem', ['id' => $item->id]) }}" class="btn btn-primary">Edit</a>
-                                <a href="{{ route('store.deleteitem', ['id' => $item->id]) }}" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            
-            </div>
-          </div>
-        </div>
+      
+   
       <!-- main-panel ends -->
     </div>
+    <a href="{{ route('view.items') }}" class="">View Store Items</a>
+    <br>
+    <a href="{{ route('trackOrder') }}" class="">Track Your Store Orders</a>
+
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->

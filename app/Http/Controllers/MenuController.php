@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Item;
 class MenuController extends Controller
 {
@@ -28,11 +29,12 @@ class MenuController extends Controller
         $menu->name = $request->name;
         $menu->image = $imagePath;
         $category = Category::all();
+        $orders = Order::all();
 
         // Associate the menu with the authenticated user's store
         $menu->store_id = $user->id; // Assign the store_id directly
         $menu->save();
     
-        return redirect()->route('store.profile')->with(['user' => Auth::user(), 'category' => $category, 'items' => $items]);
+        return redirect()->route('store.profile')->with(['user' => Auth::user(), 'category' => $category, 'items' => $items, 'orders'=>$orders]);
     }
 }
