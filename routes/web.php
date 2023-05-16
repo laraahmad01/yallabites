@@ -28,19 +28,10 @@ use App\Models\Item;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
+Route::get('/', [UserHomeController::class, 'showHome'])->name('userhome');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/userhome', function () {
-    return view('userhome');
-});
-
-
+Auth::routes();
 Route::view('/access-denied', 'access_denied')->name('access.denied');
 
 

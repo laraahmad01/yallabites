@@ -27,11 +27,10 @@ class Cart extends Model
 
     public function cartItems()
     {
-        return $this->hasMany(CartItem::class)->onDelete('cascade');;
+        return $this->hasMany(CartItem::class);
     }
     public function order()
     {
         return $this->hasOne(Order::class);
     }
 }
-

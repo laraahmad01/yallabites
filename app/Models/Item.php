@@ -24,7 +24,7 @@ class Item extends Model
 
     public function cartItems()
     {
-        return $this->hasMany(CartItem::class)->onDelete('cascade');;
+        return $this->hasMany(CartItem::class);
     }
     protected $fillable = [
         'menu_id',

@@ -35,6 +35,7 @@ public function storeNewStore(Request $request)
         'code' => 'required|string|max:255',
         'phone' => 'required|string|max:255',
         'your_email' => 'required|string|email|max:255',
+        'address' => 'required|string|max:255', // Add this line
         'cuisine' => 'required|string|max:255',
         'description' => 'required|string|max:255',
     ]);
@@ -60,6 +61,7 @@ public function storeNewStore(Request $request)
     $store = new Store;
     $store->name = $request->name;
     $store->location_id = $location->id;
+    $store->image = $image;
     $store->cuisine_id = $cuisine->id;
     $store->description = $request->description;
     $store->is_accepted = false;

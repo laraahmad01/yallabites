@@ -81,4 +81,13 @@ public function showLoginForm()
     Session::flash('login_required', 'Please log in to register a store.');
     return view('auth.login');
 }
+public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
+    if (Auth::attempt($credentials)) {
+        return redirect()->intended();
+    }
+    return redirect()->back()->withInput();
+}
+
 }
