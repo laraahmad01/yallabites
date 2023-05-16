@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\Category;
 class MenuController extends Controller
 {
     public function storeMenu(Request $request)
@@ -24,14 +25,15 @@ class MenuController extends Controller
     
         // Create a new menu instance
         $menu = new Menu();
-        $menu->name = $request->menu_name;
+        $menu->name = $request->name;
         $menu->image = $imagePath;
-    
+        $category = Category::all();
+
         // Associate the menu with the authenticated user's store
-        $menu->store_id = $user->store->id; // Assign the store_id directly
+        $menu->store_id = $user->id; // Assign the store_id directly
         $menu->save();
     
-        return redirect()->route('store.profile', ['storeId' => $user->store->id, 'menuId' => $menu->id])
-            ->with('success', 'Menu created successfully!');
+        return redirect()->route('store.profile')->with(['user' => Auth::user()])->compact('category');
+
     }
 }

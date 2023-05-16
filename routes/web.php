@@ -12,6 +12,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserHomeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ItemController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -134,3 +137,6 @@ Route::post('/Savemenus', [MenuController::class, 'storeMenu'])->name('menu.stor
 Route::get('/StoreProfile', function () {
     return view('StoreProfile');
 })->name('store.profile');
+
+
+Route::post('/additems', [ItemController::class,'store'])->name('additems');
